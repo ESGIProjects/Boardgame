@@ -2,6 +2,8 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QRadioButton>
+#include <QStackedWidget>
+#include <QVBoxLayout>
 
 class StartGame : public QWidget {
     Q_OBJECT
@@ -19,4 +21,11 @@ private:
    QRadioButton *connectfour;
    QRadioButton *othello;
    QRadioButton *tictactoe;
+
+   QWidget *connectfourWidget;
+   QWidget *othelloWidget;
+   QWidget *tictactoeWidget;
+   QStackedWidget *sw;
+   QVBoxLayout *layout;
+
 };

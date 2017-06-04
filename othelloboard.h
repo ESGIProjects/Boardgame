@@ -1,11 +1,15 @@
-#ifndef OTHELLOBOARD_H
-#define OTHELLOBOARD_H
+#pragma once
 
+#include <QWidget>
+#include <QApplication>
+#include <QPushButton>
+#include <QLabel>
+#include "genboard.h"
 
-class OthelloBoard
+class OthelloBoard : virtual public GenBoard
 {
+
 public:
     OthelloBoard();
 };
 
-#endif // OTHELLOBOARD_H

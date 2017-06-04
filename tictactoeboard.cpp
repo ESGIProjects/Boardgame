@@ -1,6 +1,6 @@
 #include "tictactoeboard.h"
 
-TictactoeBoard::TictactoeBoard()
+TictactoeBoard::TictactoeBoard() : GenBoard(NULL,3,3,"Tic Tac Toe")
 {
 
 }

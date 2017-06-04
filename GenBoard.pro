@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,15 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         startgame.cpp \
-    plusminus.cpp \
-    genboard.cpp \
     othelloboard.cpp \
     tictactoeboard.cpp \
-    connecfourboard.cpp
+    genboard.cpp \
+    connectfourboard.cpp
 
 HEADERS  += startgame.h \
-    plusminus.h \
-    genboard.h \
     othelloboard.h \
     tictactoeboard.h \
-    connecfourboard.h
+    genboard.h \
+    connectfourboard.h

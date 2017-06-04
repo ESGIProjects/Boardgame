@@ -1,6 +1,5 @@
 #include "othelloboard.h"
 
-OthelloBoard::OthelloBoard()
-{
+OthelloBoard::OthelloBoard() : GenBoard(NULL,8,8,"Othello"){
 
 }

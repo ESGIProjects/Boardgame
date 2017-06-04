@@ -6,8 +6,8 @@
 #include <QLabel>
 #include "genboard.h"
 
-class TictactoeBoard : virtual public GenBoard
+class ConnectfourBoard : virtual public GenBoard
 {
 public:
-    TictactoeBoard();
+    ConnectfourBoard();
 };

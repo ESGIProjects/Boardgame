@@ -1,11 +1,12 @@
 #include "startgame.h"
-#include "connecfourboard.h"
+#include "connectfourboard.h"
 #include "othelloboard.h"
 #include "tictactoeboard.h"
 #include <QApplication>
 #include <QFont>
 #include <QVBoxLayout>
 #include <QGroupBox>
+#include <QComboBox>
 
 StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
@@ -44,12 +45,18 @@ StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
 void StartGame::onStartGame(){
     if(connectfour->isChecked()){
-        ConnecfourBoard cb;
+        connectfourWidget = new ConnectfourBoard();
+        connectfourWidget->show();
+        this->close();
     }
     else if(othello->isChecked()){
-        OthelloBoard ob;
+        othelloWidget = new OthelloBoard();
+        othelloWidget->show();
+        this->close();
     }
     else if(tictactoe->isChecked()){
-        TictactoeBoard tb;
+        tictactoeWidget = new TictactoeBoard();
+        tictactoeWidget->show();
+        this->close();
     }
 }

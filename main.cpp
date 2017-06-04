@@ -1,5 +1,4 @@
 #include "startgame.h"
-#include "plusminus.h"
 #include <QApplication>
 #include <QPushButton>
 #include <QIcon>
