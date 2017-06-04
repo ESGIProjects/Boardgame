@@ -1,23 +1,31 @@
 #include "genboard.h"
 #include <iostream>
 #include <QDebug>
+#include "startgame.h"
+
 GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget(parent){
-    //this->resize(1280,720);
-    //grid = new QGridLayout();
-    //QWidget *centralWidget = new QWidget;
+
+    setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+    setWindowIcon(QIcon("genboard.png"));
 
     //Creation of the board
     qDebug() << "Creation of the board !";
     qDebug() << "Rows : " + QString::number(rows);
     qDebug() << "Cols : " + QString::number(cols);
-    int count=1, i, j;
+    int count = 1, i, j;
+
+    QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(0);
+
     QPushButton *button[rows][cols];
     QGridLayout *boardLayout = new QGridLayout;
     for(i=0;i< rows;i++){
         for(j=0;j<cols;j++){
             if(count<=rows*cols){
                 button[i][j] = new QPushButton("");
-                boardLayout->addWidget(button[i][j], i, j);
+                button[i][j]->setSizePolicy(sizePolicy);
+                boardLayout->addWidget(button[i][j], i, j); 
                 count++;
             }
         }
@@ -27,9 +35,20 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
 
     this->setWindowTitle(title);
     this->setLayout(boardLayout);
+    this->resize(1280,720);
 
-    //centralWidget->setLayout(controlsLayout);
+    backButton = new QPushButton("Menu",this);
 
-    //setCentralWidget(centralWidget);
+    connect(backButton, &QPushButton::clicked, this, &GenBoard::goMenu);
+    connect(restartButton, &QPushButton::clicked, this, &GenBoard::restart);
 }
 
+void GenBoard::goMenu(){
+    menu = new StartGame(NULL);
+    menu->show();
+    this->close();
+}
+
+void GenBoard::restart(){
+    // TODO
+}

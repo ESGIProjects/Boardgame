@@ -12,9 +12,11 @@ class GenBoard : public QWidget {
 
 public:
     GenBoard(QWidget *parent = 0, int rows = 0, int cols = 0, QString title = "");
-    QPushButton *back;
-    QLabel *label;
+    QPushButton *backButton;
+    QPushButton *restartButton;
+    QWidget *menu;
 
 private slots:
-    //virtual void play() = 0;
+    void restart();
+    void goMenu();
 };
