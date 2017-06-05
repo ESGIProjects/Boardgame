@@ -12,6 +12,8 @@
 StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+    setWindowTitle("GenBoard Beta v1");
+    setWindowIcon(QIcon("genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 
@@ -36,11 +38,6 @@ StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
     start = new QPushButton("Start game !", this);
     score = new QPushButton("Score",this);
-
-    //welcome->setGeometry(200,20,250,25);
-    //group->setGeometry(230,100,200,200);
-    //score->setGeometry(20,300,100,30);
-    //start->setGeometry(520,300,100,30);
 
     layout->addWidget(welcome,0,1);
     layout->addWidget(group,1,1);

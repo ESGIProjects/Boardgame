@@ -30,6 +30,7 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
             }
         }
     }
+
     boardLayout->setHorizontalSpacing(1);
     boardLayout->setVerticalSpacing(1);
 
