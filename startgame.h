@@ -13,11 +13,12 @@ public:
 
 private slots:
     void onStartGame();
+    void goScoreMenu();
 
 private:
    QLabel *welcome;
    QPushButton *start;
-   QPushButton *exit;
+   QPushButton *score;
    QRadioButton *connectfour;
    QRadioButton *othello;
    QRadioButton *tictactoe;
@@ -25,6 +26,7 @@ private:
    QWidget *connectfourWidget;
    QWidget *othelloWidget;
    QWidget *tictactoeWidget;
+   QWidget *scoreMenu;
    QStackedWidget *sw;
    QVBoxLayout *layout;
 

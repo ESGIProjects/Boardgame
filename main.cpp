@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 
     w.setWindowTitle("GenBoard Beta v1");
     w.setWindowIcon(QIcon("genboard.png"));
-    w.resize(640,360);
     w.show();
 
     return a.exec();

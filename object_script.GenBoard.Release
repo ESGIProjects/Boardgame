@@ -1,12 +1,12 @@
 INPUT(
 ./release\main.o
 ./release\startgame.o
-./release\plusminus.o
 ./release\othelloboard.o
 ./release\tictactoeboard.o
-./release\connecfourboard.o
 ./release\genboard.o
+./release\connectfourboard.o
+./release\scoremenu.o
 ./release\moc_startgame.o
-./release\moc_plusminus.o
 ./release\moc_genboard.o
+./release\moc_scoremenu.o
 );

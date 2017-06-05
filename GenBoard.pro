@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT       += sql
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,10 +30,12 @@ SOURCES += main.cpp\
     othelloboard.cpp \
     tictactoeboard.cpp \
     genboard.cpp \
-    connectfourboard.cpp
+    connectfourboard.cpp \
+    scoremenu.cpp
 
 HEADERS  += startgame.h \
     othelloboard.h \
     tictactoeboard.h \
     genboard.h \
-    connectfourboard.h
+    connectfourboard.h \
+    scoremenu.h
