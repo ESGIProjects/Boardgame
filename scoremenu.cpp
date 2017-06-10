@@ -13,6 +13,7 @@
 ScoreMenu::ScoreMenu(QWidget *parent) : QWidget(parent)
 {
     this->setWindowTitle("Scores");
+    this->setWindowIcon(QIcon("genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 
@@ -34,7 +35,7 @@ ScoreMenu::ScoreMenu(QWidget *parent) : QWidget(parent)
     layout->addWidget(scoreConnect,0,2);
     layout ->addWidget(scoreOthello,1,2);
     layout->addWidget(scoreTictactoe,2,2);
-    layout->addWidget(toMenu,3,1);
+    layout->addWidget(toMenu,3,0,1,3);
     layout->setHorizontalSpacing(200);
     layout->setVerticalSpacing(50);
 

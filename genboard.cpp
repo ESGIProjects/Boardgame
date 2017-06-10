@@ -1,6 +1,8 @@
 #include "genboard.h"
 #include <iostream>
 #include <QDebug>
+#include <QList>
+
 #include "startgame.h"
 
 GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget(parent){
@@ -8,25 +10,29 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
     setWindowIcon(QIcon("genboard.png"));
 
-
-
     //Creation of the board
     qDebug() << "Creation of the board !";
     qDebug() << "Rows : " + QString::number(rows);
     qDebug() << "Cols : " + QString::number(cols);
-    int count = 1;
+    int count = 0, i, j;
 
-    //QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    //sizePolicy.setHorizontalStretch(0);
-    //sizePolicy.setVerticalStretch(0);
+    restartButton = new QPushButton("Restart", this);
+    backButton = new QPushButton("Menu",this);
 
-    QPushButton *button[rows][cols];
+    QGridLayout *layout = new QGridLayout();
+
+    QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(0);
+
+    QPushButton *buttons[rows][cols];
     QGridLayout *boardLayout = new QGridLayout;
-    for(int i=0;i< rows;i++){
-        for(int j=0;j<cols;j++){
-            if(count<=rows*cols){
-                //button[i][j]->setSizePolicy(sizePolicy);
-                boardLayout->addWidget(button[i][j], i, j); 
+    for(i=0;i<rows;i++){
+        for(j=0;j<cols;j++){
+            if(count<rows*cols){
+                buttons[i][j] = new QPushButton("");
+                buttons[i][j]->setSizePolicy(sizePolicy);
+                boardLayout->addWidget(buttons[i][j], i, j);
                 count++;
             }
         }
@@ -35,11 +41,13 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
     boardLayout->setHorizontalSpacing(1);
     boardLayout->setVerticalSpacing(1);
 
-    this->setWindowTitle(title);
-    this->setLayout(boardLayout);
-    this->resize(1280,720);
+    layout->addLayout(boardLayout,0,0,1,2);
+    layout->addWidget(backButton,1,0);
+    layout->addWidget(restartButton,1,1);
 
-    backButton = new QPushButton("Menu",this);
+    this->setWindowTitle(title);
+    this->setLayout(layout);
+    this->resize(1280,720);
 
     connect(backButton, &QPushButton::clicked, this, &GenBoard::goMenu);
     connect(restartButton, &QPushButton::clicked, this, &GenBoard::restart);
