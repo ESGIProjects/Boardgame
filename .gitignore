@@ -29,8 +29,8 @@
 *.app
 
 #MakeFile
-Makefile
-Makefile.Release
-MakeFile.Debug
+!Makefile
+!Makefile.Release
+!MakeFile.Debug
 
 
