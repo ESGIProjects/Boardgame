@@ -7,8 +7,19 @@
 
 GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget(parent){
 
+    playList = new QMediaPlaylist();
+    playList->addMedia(QUrl::fromLocalFile("Ressources/music.mp3"));
+    playList->addMedia(QUrl::fromLocalFile("Ressources/music2.mp3"));
+    playList->addMedia(QUrl::fromLocalFile("Ressources/music3.mp3"));
+    playList->setPlaybackMode(QMediaPlaylist::Loop);
+
+    music = new QMediaPlayer;
+    music->setPlaylist(playList);
+    music->setVolume(100);
+    music->play();
+
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-    setWindowIcon(QIcon("genboard.png"));
+    setWindowIcon(QIcon("Ressources/genboard.png"));
 
     //Creation of the board
     qDebug() << "Creation of the board !";
@@ -54,9 +65,10 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
 }
 
 void GenBoard::goMenu(){
-    menu = new StartGame(NULL);
+    menu = new StartGame();
     menu->show();
     this->close();
+    music->stop();
 }
 
 void GenBoard::restart(){

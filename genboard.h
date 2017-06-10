@@ -5,6 +5,9 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QGridLayout>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QUrl>
 #include <string.h>
 
 class GenBoard : public QWidget {
@@ -15,6 +18,9 @@ public:
     QPushButton *backButton;
     QPushButton *restartButton;
     QWidget *menu;
+
+    QMediaPlaylist *playList;
+    QMediaPlayer *music;
 
 private slots:
     void restart();

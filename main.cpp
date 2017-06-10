@@ -8,9 +8,16 @@
 #include <QSqlDriver>
 #include <QSqlError>
 #include <QDebug>
+#include <QFileInfo>
 
-int main(int argc, char *argv[])
-{
+bool isDBexists(){
+    //we check if bdd file exists
+    QFileInfo qfi("Ressources/bdd");
+    return qfi.exists() && qfi.isFile();
+}
+
+void initConnection() {
+
     const QString DRIVER("QSQLITE");
 
     if(QSqlDatabase::isDriverAvailable(DRIVER)){
@@ -20,8 +27,8 @@ int main(int argc, char *argv[])
         qDebug() << "Driver is missing !";
     }
 
-    QSqlDatabase db = QSqlDatabase::addDatabase(DRIVER);
-    db.setDatabaseName(":memory:");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("Ressources/bdd");
 
     if(!db.open()){
          qDebug() << "ERROR: " << db.lastError();
@@ -29,22 +36,35 @@ int main(int argc, char *argv[])
     else{
         qDebug() << "Connection is a success !";
     }
+}
 
+void createDB(){
     QSqlQuery query;
 
-    // we excute some query in order to create and insert some data and ensure it's done correctly
+    // we execute some query in order to create and insert some data and ensure it's done correctly
 
-    if(!query.exec("CREATE TABLE games (id INTEGER PRIMARY KEY, name TEXT, numberPlay INTEGER)")){
+    if(!query.exec("CREATE TABLE games (id INTEGER PRIMARY KEY, name TEXT, numberPlay INTEGER, numberWins INTEGER)")){
         qDebug() << "ERROR : " << query.lastError().text();
     }
-    if(!query.exec("INSERT INTO games(name,numberPlay) VALUES('Connect Four',0)")){
+    if(!query.exec("INSERT INTO games(name,numberPlay,numberWins) VALUES('Connect Four',0,0)")){
         qDebug() << "ERROR : " << query.lastError().text();
     }
-    if(!query.exec("INSERT INTO games(name,numberPlay) VALUES('Othello',0)")){
+    if(!query.exec("INSERT INTO games(name,numberPlay,numberWins) VALUES('Othello',0,0)")){
         qDebug() << "ERROR : " << query.lastError().text();
     }
-    if(!query.exec("INSERT INTO games(name,numberPlay) VALUES('Tic Tac Toe',0)")){
+    if(!query.exec("INSERT INTO games(name,numberPlay,numberWins) VALUES('Tic Tac Toe',0,0)")){
         qDebug() << "ERROR : " << query.lastError().text();
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    if(!isDBexists()){
+        initConnection();
+        createDB();
+    }
+    else {
+        initConnection();
     }
 
     QApplication a(argc, argv);

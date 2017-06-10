@@ -13,19 +13,39 @@
 ScoreMenu::ScoreMenu(QWidget *parent) : QWidget(parent)
 {
     this->setWindowTitle("Scores");
-    this->setWindowIcon(QIcon("genboard.png"));
+    this->setWindowIcon(QIcon("Ressources/genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 
     this->setLayout(layout);
 
-    connectFour = new QLabel("Number of Connect Four game : ",this);
-    othello = new QLabel("Number of Othello game : ",this);
-    tictactoe = new QLabel("Number of Tictactoe game : ",this);
+    connectFour = new QLabel("Number of Connect Four game / wins: ",this);
+    othello = new QLabel("Number of Othello game / wins :",this);
+    tictactoe = new QLabel("Number of Tictactoe game / wins: ",this);
 
-    scoreConnect = new QLabel("0",this);
-    scoreOthello = new QLabel("0",this);
-    scoreTictactoe = new QLabel("0",this);
+    query.exec("SELECT numberPlay FROM games where name = 'Connect Four'");
+    if(query.next()){
+        scoreConnect = new QLabel(query.value(0).toString(),this);
+    }
+    else{
+        scoreConnect = new QLabel("Error",this);
+    }
+
+    query.exec("SELECT numberPlay FROM games where name = 'Othello'");
+    if(query.next()){
+        scoreOthello = new QLabel(query.value(0).toString(),this);
+    }
+    else{
+        scoreOthello = new QLabel("Error",this);
+    }
+
+    query.exec("SELECT numberPlay FROM games where name = 'Tic Tac Toe'");
+    if(query.next()){
+        scoreTictactoe = new QLabel(query.value(0).toString(),this);
+    }
+    else{
+        scoreTictactoe = new QLabel("Error",this);
+    }
 
     toMenu = new QPushButton("Main menu", this);
 

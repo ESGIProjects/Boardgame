@@ -14,7 +14,7 @@ StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
     setWindowTitle("GenBoard Beta v2");
-    setWindowIcon(QIcon("genboard.png"));
+    setWindowIcon(QIcon("Ressources/genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 
@@ -54,20 +54,19 @@ StartGame::StartGame(QWidget *parent) : QWidget(parent){
 void StartGame::onStartGame(){
 
     if(connectfour->isChecked()){
-        //query.prepare("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
-        //if(query.first()){
-        //    qDebug() << query.value(0).toString();
-        //}
+        query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
         connectfourWidget = new ConnectfourBoard();
         connectfourWidget->show();
         this->close();
     }
     else if(othello->isChecked()){
+        query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Othello'");
         othelloWidget = new OthelloBoard();
         othelloWidget->show();
         this->close();
     }
     else if(tictactoe->isChecked()){
+        query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Tic Tac Toe'");
         tictactoeWidget = new TictactoeBoard();
         tictactoeWidget->show();
         this->close();

@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
+#include <QSqlQuery>
 
 class ScoreMenu : public QWidget
 {
@@ -20,6 +21,8 @@ public:
 
     QPushButton *toMenu;
     QWidget *mainMenu;
+
+    QSqlQuery query;
     
 private slots:
     void goMenu();
