@@ -8,11 +8,12 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include <QComboBox>
+#include <QDebug>
 
 StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-    setWindowTitle("GenBoard Beta v1");
+    setWindowTitle("GenBoard Beta v2");
     setWindowIcon(QIcon("genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
@@ -51,7 +52,12 @@ StartGame::StartGame(QWidget *parent) : QWidget(parent){
 }
 
 void StartGame::onStartGame(){
+
     if(connectfour->isChecked()){
+        //query.prepare("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
+        //if(query.first()){
+        //    qDebug() << query.value(0).toString();
+        //}
         connectfourWidget = new ConnectfourBoard();
         connectfourWidget->show();
         this->close();

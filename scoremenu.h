@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QPushButton>
 
 class ScoreMenu : public QWidget
 {
@@ -10,14 +11,16 @@ class ScoreMenu : public QWidget
 
 public:
     ScoreMenu(QWidget *parent = 0);
-    QLabel *connect;
+    QLabel *connectFour;
     QLabel *scoreConnect;
     QLabel *othello;
     QLabel *scoreOthello;
     QLabel *tictactoe;
     QLabel *scoreTictactoe;
-    QWidget *menu;
+
+    QPushButton *toMenu;
+    QWidget *mainMenu;
     
 private slots:
-    //void goMenu();
+    void goMenu();
 };

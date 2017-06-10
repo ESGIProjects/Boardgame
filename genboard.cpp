@@ -8,23 +8,24 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
     setWindowIcon(QIcon("genboard.png"));
 
+
+
     //Creation of the board
     qDebug() << "Creation of the board !";
     qDebug() << "Rows : " + QString::number(rows);
     qDebug() << "Cols : " + QString::number(cols);
-    int count = 1, i, j;
+    int count = 1;
 
-    QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    sizePolicy.setHorizontalStretch(0);
-    sizePolicy.setVerticalStretch(0);
+    //QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    //sizePolicy.setHorizontalStretch(0);
+    //sizePolicy.setVerticalStretch(0);
 
     QPushButton *button[rows][cols];
     QGridLayout *boardLayout = new QGridLayout;
-    for(i=0;i< rows;i++){
-        for(j=0;j<cols;j++){
+    for(int i=0;i< rows;i++){
+        for(int j=0;j<cols;j++){
             if(count<=rows*cols){
-                button[i][j] = new QPushButton("");
-                button[i][j]->setSizePolicy(sizePolicy);
+                //button[i][j]->setSizePolicy(sizePolicy);
                 boardLayout->addWidget(button[i][j], i, j); 
                 count++;
             }
