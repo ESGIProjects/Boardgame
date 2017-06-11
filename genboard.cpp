@@ -2,15 +2,17 @@
 #include <iostream>
 #include <QDebug>
 #include <QList>
+#include <QDir>
+#include <QString>
 
 #include "startgame.h"
 
 GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget(parent){
 
     playList = new QMediaPlaylist();
-    playList->addMedia(QUrl::fromLocalFile("Ressources/music.mp3"));
-    playList->addMedia(QUrl::fromLocalFile("Ressources/music2.mp3"));
-    playList->addMedia(QUrl::fromLocalFile("Ressources/music3.mp3"));
+    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music.mp3"));
+    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music2.mp3"));
+    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music3.mp3"));
     playList->setPlaybackMode(QMediaPlaylist::Loop);
 
     music = new QMediaPlayer;
@@ -19,7 +21,7 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
     music->play();
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-    setWindowIcon(QIcon("Ressources/genboard.png"));
+    setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
 
     //Creation of the board
     qDebug() << "Creation of the board !";

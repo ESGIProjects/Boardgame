@@ -9,12 +9,13 @@
 #include <QGroupBox>
 #include <QComboBox>
 #include <QDebug>
+#include <QDir>
 
 StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
     setWindowTitle("GenBoard Beta v2");
-    setWindowIcon(QIcon("Ressources/genboard.png"));
+    setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 

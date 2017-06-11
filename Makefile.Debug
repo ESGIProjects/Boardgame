@@ -389,6 +389,9 @@ debug/moc_genboard.cpp: D:/Qt/5.6/mingw49_32/include/QtWidgets/QWidget \
 		D:/Qt/5.6/mingw49_32/include/QtCore/qmetaobject.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
 		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/QMediaPlaylist \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediabindableinterface.h \
 		genboard.h
 	D:\Qt\5.6\mingw49_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.6/mingw49_32/mkspecs/win32-g++ -IC:/Users/kevin/Desktop/C++/GenBoard -ID:/Qt/5.6/mingw49_32/include -ID:/Qt/5.6/mingw49_32/include/QtMultimedia -ID:/Qt/5.6/mingw49_32/include/QtWidgets -ID:/Qt/5.6/mingw49_32/include/QtGui -ID:/Qt/5.6/mingw49_32/include/QtANGLE -ID:/Qt/5.6/mingw49_32/include/QtSql -ID:/Qt/5.6/mingw49_32/include/QtNetwork -ID:/Qt/5.6/mingw49_32/include/QtCore genboard.h -o debug\moc_genboard.cpp
 
@@ -827,6 +830,9 @@ debug/startgame.o: startgame.cpp startgame.h \
 		D:/Qt/5.6/mingw49_32/include/QtCore/qmetaobject.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
 		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/QMediaPlaylist \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediabindableinterface.h \
 		othelloboard.h \
 		tictactoeboard.h \
 		scoremenu.h \
@@ -990,7 +996,10 @@ debug/othelloboard.o: othelloboard.cpp othelloboard.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
 		D:/Qt/5.6/mingw49_32/include/QtCore/qmetaobject.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
-		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h
+		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/QMediaPlaylist \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediabindableinterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\othelloboard.o othelloboard.cpp
 
 debug/tictactoeboard.o: tictactoeboard.cpp tictactoeboard.h \
@@ -1133,7 +1142,10 @@ debug/tictactoeboard.o: tictactoeboard.cpp tictactoeboard.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
 		D:/Qt/5.6/mingw49_32/include/QtCore/qmetaobject.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
-		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h
+		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/QMediaPlaylist \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediabindableinterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\tictactoeboard.o tictactoeboard.cpp
 
 debug/genboard.o: genboard.cpp genboard.h \
@@ -1276,8 +1288,14 @@ debug/genboard.o: genboard.cpp genboard.h \
 		D:/Qt/5.6/mingw49_32/include/QtCore/qmetaobject.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
 		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/QMediaPlaylist \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediabindableinterface.h \
 		D:/Qt/5.6/mingw49_32/include/QtCore/QDebug \
 		D:/Qt/5.6/mingw49_32/include/QtCore/QList \
+		D:/Qt/5.6/mingw49_32/include/QtCore/QDir \
+		D:/Qt/5.6/mingw49_32/include/QtCore/qdir.h \
+		D:/Qt/5.6/mingw49_32/include/QtCore/qfileinfo.h \
 		startgame.h \
 		D:/Qt/5.6/mingw49_32/include/QtWidgets/QRadioButton \
 		D:/Qt/5.6/mingw49_32/include/QtWidgets/qradiobutton.h \
@@ -1435,7 +1453,10 @@ debug/connectfourboard.o: connectfourboard.cpp connectfourboard.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaenumdebug.h \
 		D:/Qt/5.6/mingw49_32/include/QtCore/qmetaobject.h \
 		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qaudio.h \
-		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h
+		D:/Qt/5.6/mingw49_32/include/QtNetwork/qnetworkconfiguration.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/QMediaPlaylist \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediaplaylist.h \
+		D:/Qt/5.6/mingw49_32/include/QtMultimedia/qmediabindableinterface.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\connectfourboard.o connectfourboard.cpp
 
 debug/scoremenu.o: scoremenu.cpp D:/Qt/5.6/mingw49_32/include/QtWidgets/QGridLayout \

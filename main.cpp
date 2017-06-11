@@ -12,7 +12,7 @@
 
 bool isDBexists(){
     //we check if bdd file exists
-    QFileInfo qfi("Ressources/bdd");
+    QFileInfo qfi("Ressources" + QString(QDir::separator()) + "bdd");
     return qfi.exists() && qfi.isFile();
 }
 

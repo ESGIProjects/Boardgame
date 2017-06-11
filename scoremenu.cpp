@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QPushButton>
+#include <QDir>
 
 #include "startgame.h"
 #include "scoremenu.h"
@@ -13,7 +14,7 @@
 ScoreMenu::ScoreMenu(QWidget *parent) : QWidget(parent)
 {
     this->setWindowTitle("Scores");
-    this->setWindowIcon(QIcon("Ressources/genboard.png"));
+    this->setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 
