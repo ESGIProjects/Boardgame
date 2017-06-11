@@ -13,7 +13,7 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
     playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music.mp3"));
     playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music2.mp3"));
     playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music3.mp3"));
-    playList->setPlaybackMode(QMediaPlaylist::Loop);
+    playList->setPlaybackMode(QMediaPlaylist::PlaybackMode::Random);
 
     music = new QMediaPlayer;
     music->setPlaylist(playList);
@@ -21,6 +21,7 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
     music->play();
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+    setWindowFlags(Qt::MacWindowToolBarButtonHint);
     setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
 
     //Creation of the board
@@ -54,7 +55,7 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
     boardLayout->setHorizontalSpacing(1);
     boardLayout->setVerticalSpacing(1);
 
-    layout->addLayout(boardLayout,0,0,1,2);
+    layout->addLayout(boardLayout,0,0,1,1);
     layout->addWidget(backButton,1,0);
     layout->addWidget(restartButton,1,1);
 
