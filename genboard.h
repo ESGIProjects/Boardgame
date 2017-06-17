@@ -22,6 +22,10 @@ public:
     QMediaPlaylist *playList;
     QMediaPlayer *music;
 
+public slots:
+    virtual void handleButton(int);
+
+
 private slots:
     void restart();
     void goMenu();

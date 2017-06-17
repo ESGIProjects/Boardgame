@@ -10,4 +10,7 @@ class TictactoeBoard : virtual public GenBoard
 {
 public:
     TictactoeBoard();
+
+public slots:
+    virtual void handleButton(int);
 };

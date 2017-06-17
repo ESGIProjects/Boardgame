@@ -4,6 +4,7 @@
 #include <QList>
 #include <QDir>
 #include <QString>
+#include <QSignalMapper>
 
 #include "startgame.h"
 
@@ -41,16 +42,22 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
 
     QPushButton *buttons[rows][cols];
     QGridLayout *boardLayout = new QGridLayout;
+    QSignalMapper *signalMapper = new QSignalMapper(this);
+
     for(i=0;i<rows;i++){
         for(j=0;j<cols;j++){
             if(count<rows*cols){
-                buttons[i][j] = new QPushButton("");
+                buttons[i][j] = new QPushButton("", this);
                 buttons[i][j]->setSizePolicy(sizePolicy);
+                signalMapper->setMapping(buttons[i][j], i*cols+j);
+                connect(buttons[i][j], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
                 boardLayout->addWidget(buttons[i][j], i, j);
                 count++;
             }
         }
     }
+
+    connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(handleButton(int)));
 
     boardLayout->setHorizontalSpacing(1);
     boardLayout->setVerticalSpacing(1);
@@ -76,4 +83,8 @@ void GenBoard::goMenu(){
 
 void GenBoard::restart(){
     // TODO
+}
+
+void GenBoard::handleButton(int position) {
+    qDebug() << "Handle Button : " + QString::number(position);
 }

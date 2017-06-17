@@ -10,4 +10,7 @@ class ConnectfourBoard : virtual public GenBoard
 {
 public:
     ConnectfourBoard();
+
+public slots:
+    virtual void handleButton(int);
 };
