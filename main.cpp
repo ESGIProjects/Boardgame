@@ -1,4 +1,6 @@
 #include "startgame.h"
+#include "Board.h"
+#include "constants.h"
 #include <QApplication>
 #include <QPushButton>
 #include <QIcon>

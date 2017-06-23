@@ -33,11 +33,16 @@ SOURCES += main.cpp\
     tictactoeboard.cpp \
     genboard.cpp \
     connectfourboard.cpp \
-    scoremenu.cpp
+    scoremenu.cpp \
+    Board.cpp \
+    Coordinates.cpp
 
 HEADERS  += startgame.h \
     othelloboard.h \
     tictactoeboard.h \
     genboard.h \
     connectfourboard.h \
-    scoremenu.h
+    scoremenu.h \
+    Board.h \
+    Coordinates.h \
+    constants.h
