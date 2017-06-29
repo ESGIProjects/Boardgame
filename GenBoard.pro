@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     connectfourboard.cpp \
     scoremenu.cpp \
     Board.cpp \
-    Coordinates.cpp
+    Coordinates.cpp \
+    genboard_real.cpp
 
 HEADERS  += startgame.h \
     othelloboard.h \
@@ -45,4 +46,5 @@ HEADERS  += startgame.h \
     scoremenu.h \
     Board.h \
     Coordinates.h \
-    constants.h
+    constants.h \
+    genboard_real.h

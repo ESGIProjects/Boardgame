@@ -2,6 +2,8 @@
 #include "connectfourboard.h"
 #include "othelloboard.h"
 #include "tictactoeboard.h"
+#include "genboard_real.h"
+#include "Board.h"
 #include "scoremenu.h"
 #include <QApplication>
 #include <QFont>
@@ -62,7 +64,9 @@ void StartGame::onStartGame(){
     }
     else if(othello->isChecked()){
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Othello'");
-        othelloWidget = new OthelloBoard();
+        //othelloWidget = new OthelloBoard();
+        Board *board = new Board(8, 8);
+        othelloWidget = new GenBoardReal(board);
         othelloWidget->show();
         this->close();
     }

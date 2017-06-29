@@ -8,7 +8,7 @@
 
 #include "startgame.h"
 
-GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget(parent){
+GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget(parent) {
 
     playList = new QMediaPlaylist();
     playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music.mp3"));

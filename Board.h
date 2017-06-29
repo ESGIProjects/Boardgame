@@ -6,18 +6,35 @@
 
 class Board {
 public:
-    Board();
+    // Constructors
+    Board(int rows, int cols);
     //Board(Board);
+
+    // Basic board information
     int getSquareState(int, int);
-    bool isPlayableMove(int, int, int);
-    QVector<Coordinates> *playableMoves(int);
-    void move(int, int, int);
-    void reset();
+    int getSquareState(int);
     int score(int);
+    int getRows();
+    int getCols();
+
+    // Coordinates converters
+    int coordinates2Array(Coordinates);
+    int coordinates2Array(int, int);
+
+    // Game logic
+    bool isPlayableMove(int, int);
+    QVector<Coordinates> *playableMoves(int);
+    void move(int, int);
     QVector<Coordinates> *neighbors(int, int);
 
-//private:
-    int boardState[100];
+    // Start and reset board
+    int* startBoard() const;
+    void reset();
+
+private:
+    int *boardState;
+    int rows;
+    int cols;
 };
 
 #endif // BOARD_H

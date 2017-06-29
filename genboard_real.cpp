@@ -1,0 +1,156 @@
+#include "genboard_real.h"
+#include "constants.h"
+#include <iostream>
+#include <QDebug>
+#include <QList>
+#include <QDir>
+#include <QString>
+#include <QSignalMapper>
+
+#include "startgame.h"
+
+GenBoardReal::GenBoardReal(Board *board) : QWidget(0) {
+
+    // Base requirements
+    QString title = "GenBoardReal";
+    this->board = board;
+    int rows = board->getRows();
+    int cols = board->getCols();
+
+    currentPlayer = SQUARE_PLAYER;
+
+    // Music launch
+    playList = new QMediaPlaylist();
+    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music.mp3"));
+    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music2.mp3"));
+    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music3.mp3"));
+    playList->setPlaybackMode(QMediaPlaylist::PlaybackMode::Random);
+
+    music = new QMediaPlayer;
+    music->setPlaylist(playList);
+    music->setVolume(100);
+    music->play();
+
+    // Window parameters
+    setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
+    setWindowFlags(Qt::MacWindowToolBarButtonHint);
+    setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
+
+    // Debug
+    qDebug() << "Creation of the board !";
+    qDebug() << "Rows : " + QString::number(rows);
+    qDebug() << "Cols : " + QString::number(cols);
+
+    // Menu buttons
+    restartButton = new QPushButton("Restart", this);
+    backButton = new QPushButton("Menu",this);
+
+    connect(backButton, &QPushButton::clicked, this, &GenBoardReal::goMenu);
+    connect(restartButton, &QPushButton::clicked, this, &GenBoardReal::restart);
+
+    // Window layout
+    QGridLayout *layout = new QGridLayout();
+
+    QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(0);
+
+    buttons = new QPushButton*[rows*cols];
+    QGridLayout *boardLayout = new QGridLayout;
+    QSignalMapper *signalMapper = new QSignalMapper(this);
+
+    for(int i = 0; i < rows; i++) {
+        for(int j = 0; j < cols; j++) {
+                buttons[i*cols+j] = new QPushButton("", this);
+                buttons[i*cols+j]->setSizePolicy(sizePolicy);
+                signalMapper->setMapping(buttons[i*cols+j], i*cols+j);
+                connect(buttons[i*cols+j], SIGNAL(clicked(bool)), signalMapper, SLOT(map()));
+                boardLayout->addWidget(buttons[i*cols+j], i, j);
+        }
+    }
+
+    connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(handleButton(int)));
+
+    boardLayout->setHorizontalSpacing(1);
+    boardLayout->setVerticalSpacing(1);
+
+    layout->addLayout(boardLayout,0,0,1,1);
+    layout->addWidget(backButton,1,0);
+    layout->addWidget(restartButton,1,1);
+
+    this->setWindowTitle(title);
+    this->setLayout(layout);
+    this->resize(1280,720);
+
+    displayBoard();
+}
+
+void GenBoardReal::goMenu() {
+    menu = new StartGame();
+    music->stop();
+
+    menu->show();
+    this->close();
+}
+
+void GenBoardReal::restart(){
+    board->reset();
+    currentPlayer = SQUARE_PLAYER;
+    displayBoard();
+}
+
+void GenBoardReal::handleButton(int position) {
+    int boardPosition = convertPositionFromUIToBoard(position);
+
+    qDebug() << "Handle Button : " << QString::number(boardPosition);
+
+    if (board->isPlayableMove(currentPlayer, boardPosition)) {
+        board->move(currentPlayer, boardPosition);
+        qDebug() << "Playable move";
+        displayBoard();
+        currentPlayer = -currentPlayer;
+    } else {
+        qDebug() << "Not a valid move";
+    }
+}
+
+int GenBoardReal::convertPositionFromUIToBoard(int position) {
+    int x = position % board->getCols();
+    int y = position / board->getRows();
+
+    return (y+1) * (board->getCols()+2) + x + 1;
+}
+
+void GenBoardReal::displayBoard() {
+    QColor white(Qt::white);
+    QColor black(Qt::black);
+
+    QPalette playerPalette;
+    playerPalette.setColor(QPalette::Background, white);
+
+    QPalette opponentPalette;
+    opponentPalette.setColor(QPalette::Background, black);
+
+    for (int i = 0; i < board->getCols(); i++) {
+        for (int j = 0; j < board->getRows(); j++) {
+            int squareState = board->getSquareState(i+1, j+1);
+            QPushButton *button = buttons[i * board->getCols() + j];
+            //button->setAutoFillBackground(true);
+
+            if (squareState == SQUARE_PLAYER) {
+                button->setText("P");
+                button->setPalette(playerPalette);
+            }
+            if (squareState == SQUARE_OPPONENT) {
+                button->setText("O");
+                button->setPalette(opponentPalette);
+            }
+
+            if (squareState == SQUARE_EMPTY) {
+                button->setText("");
+            }
+
+            button->update();
+        }
+    }
+}
