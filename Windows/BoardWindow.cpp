@@ -17,8 +17,6 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
     int rows = board.getRows();
     int cols = board.getCols();
 
-    currentPlayer = SQUARE_PLAYER;
-
     // Music launch
     playList = new QMediaPlaylist();
     playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music.mp3"));
@@ -82,7 +80,7 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
     this->setLayout(layout);
     this->resize(1280,720);
 
-    displayBoard();
+    restart();
 }
 
 void BoardWindow::goMenu() {
@@ -131,8 +129,9 @@ void BoardWindow::displayBoard() {
     QPalette opponentPalette;
     opponentPalette.setColor(QPalette::Background, black);
 
-    for (int i = 0; i < board->getCols(); i++) {
-        for (int j = 0; j < board->getRows(); j++) {
+    for (int i = 0; i < board->getRows(); i++) {
+        for (int j = 0; j < board->getCols(); j++) {
+
             int squareState = board->getSquareState(i+1, j+1);
             QPushButton *button = buttons[i * board->getCols() + j];
             //button->setAutoFillBackground(true);

@@ -1,5 +1,3 @@
-#include <QVector>
-
 #include "TicTacToeBoard.h"
 #include "../constants.h"
 

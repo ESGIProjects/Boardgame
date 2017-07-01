@@ -1,14 +1,15 @@
-#ifndef TICTACTOEBOARD_H
-#define TICTACTOEBOARD_H
+#ifndef CONNECTFOURBOARD_H
+#define CONNECTFOURBOARD_H
 
 #include <QVector>
 
 #include "../Coordinates.h"
 #include "Board.h"
 
-class TicTacToeBoard : public Board {
+class ConnectFourBoard : public Board
+{
 public:
-    TicTacToeBoard();
+    ConnectFourBoard();
 
     virtual int score(int) const;
     virtual bool isPlayableMove(int, int) const;
@@ -18,4 +19,4 @@ public:
     virtual int* startBoard() const;
 };
 
-#endif // TICTACTOEBOARD_H
+#endif // CONNECTFOURBOARD_H

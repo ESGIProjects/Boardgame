@@ -8,6 +8,7 @@
 #include "StartWindow.h"
 #include "BoardWindow.h"
 #include "ScoresWindow.h"
+#include "../Boards/ConnectFourBoard.h"
 #include "../Boards/OthelloBoard.h"
 #include "../Boards/TicTacToeBoard.h"
 
@@ -56,10 +57,8 @@ void StartWindow::onStartGame(){
 
     if(connectfour->isChecked()) {
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
-        //connectfourWidget = new ConnectfourBoard();
-        //connectfourWidget->show();
 
-        Board *board = new OthelloBoard();
+        Board *board = new ConnectFourBoard();
         connectfourWidget = new BoardWindow(*board);
         connectfourWidget->show();
 
@@ -67,16 +66,15 @@ void StartWindow::onStartGame(){
     }
     else if(othello->isChecked()) {
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Othello'");
-        //othelloWidget = new OthelloBoard();
+
         Board *board = new OthelloBoard();
         othelloWidget = new BoardWindow(*board);
         othelloWidget->show();
+
         this->close();
     }
     else if(tictactoe->isChecked()){
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Tic Tac Toe'");
-        //tictactoeWidget = new TictactoeBoard();
-        //tictactoeWidget->show();
 
         Board *board = new TicTacToeBoard();
         tictactoeWidget = new BoardWindow(*board);
