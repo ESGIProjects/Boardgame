@@ -1,14 +1,13 @@
-#ifndef OTHELLOBOARD_H
-#define OTHELLOBOARD_H
+#ifndef TICTACTOEBOARD_H
+#define TICTACTOEBOARD_H
 
 #include <QVector>
-
 #include "../Coordinates.h"
 #include "Board.h"
 
-class OthelloBoard : public Board {
+class TicTacToeBoard : public Board {
 public:
-    OthelloBoard();
+    TicTacToeBoard();
 
     virtual int score(int) const;
     virtual bool isPlayableMove(int, int) const;
@@ -18,4 +17,4 @@ public:
     virtual int* startBoard() const;
 };
 
-#endif // OTHELLOBOARD_H
+#endif // TICTACTOEBOARD_H

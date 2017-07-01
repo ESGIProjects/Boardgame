@@ -3,10 +3,7 @@
 #include "OthelloBoard.h"
 #include "../constants.h"
 
-// Constructor
-OthelloBoard::OthelloBoard(int rows, int cols) : Board(rows, cols) {}
-
-// Basic Board Information
+OthelloBoard::OthelloBoard() : Board(8, 8) {}
 
 int OthelloBoard::score(int player) const {
     int score = 0;
@@ -22,14 +19,9 @@ int OthelloBoard::score(int player) const {
     return score;
 }
 
-// Coordinates converters
-
-
-// Game logic
 bool OthelloBoard::isPlayableMove(int player, int position) const {
-    //int square = row * 10 + col;
 
-    if (boardState[position] != SQUARE_EMPTY) { // remplacer 0 par constantes
+    if (boardState[position] != SQUARE_EMPTY) {
         return false;
     }
 
@@ -58,7 +50,6 @@ QVector<Coordinates> *OthelloBoard::playableMoves(int player) const {
         for (int j = 1; j < 9; j++) {
             if (isPlayableMove(player, i * cols + j)) {
                 const Coordinates *move = new Coordinates(i, j);
-                //qDebug() << i << " " << j;
                 moves->insert(moves->size(), *move);
             }
         }
@@ -68,7 +59,6 @@ QVector<Coordinates> *OthelloBoard::playableMoves(int player) const {
 }
 
 void OthelloBoard::move(int player, int position) {
-    //int square = row * 10 + col;
     int opponent = -player;
 
     boardState[position] = player;
@@ -91,8 +81,6 @@ void OthelloBoard::move(int player, int position) {
     }
 }
 
-
-
 QVector<Coordinates> *OthelloBoard::neighbors(int row, int col) const {
     QVector<Coordinates> *neighbors = new QVector<Coordinates>();
     int square = row * 10 + col;
@@ -109,7 +97,6 @@ QVector<Coordinates> *OthelloBoard::neighbors(int row, int col) const {
     return neighbors;
 }
 
-// Start and reset board
 int *OthelloBoard::startBoard() const {
     int* startBoard = new int[100] {
             SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,   SQUARE_EDGE,

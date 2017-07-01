@@ -9,6 +9,7 @@
 #include "BoardWindow.h"
 #include "ScoresWindow.h"
 #include "../Boards/OthelloBoard.h"
+#include "../Boards/TicTacToeBoard.h"
 
 StartWindow::StartWindow(QWidget *parent) : QWidget(parent){
 
@@ -58,7 +59,7 @@ void StartWindow::onStartGame(){
         //connectfourWidget = new ConnectfourBoard();
         //connectfourWidget->show();
 
-        Board *board = new OthelloBoard(8, 8);
+        Board *board = new OthelloBoard();
         connectfourWidget = new BoardWindow(*board);
         connectfourWidget->show();
 
@@ -67,7 +68,7 @@ void StartWindow::onStartGame(){
     else if(othello->isChecked()) {
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Othello'");
         //othelloWidget = new OthelloBoard();
-        Board *board = new OthelloBoard(8, 8);
+        Board *board = new OthelloBoard();
         othelloWidget = new BoardWindow(*board);
         othelloWidget->show();
         this->close();
@@ -77,7 +78,7 @@ void StartWindow::onStartGame(){
         //tictactoeWidget = new TictactoeBoard();
         //tictactoeWidget->show();
 
-        Board *board = new OthelloBoard(8, 8);
+        Board *board = new TicTacToeBoard();
         tictactoeWidget = new BoardWindow(*board);
         tictactoeWidget->show();
 
