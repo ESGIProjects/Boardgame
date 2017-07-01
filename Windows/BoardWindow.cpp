@@ -7,7 +7,7 @@
 
 #include "StartWindow.h"
 #include "BoardWindow.h"
-#include "constants.h"
+#include "../constants.h"
 
 BoardWindow::BoardWindow(Board &board) : QWidget(0) {
 

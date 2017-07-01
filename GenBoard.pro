@@ -28,20 +28,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-    genboard.cpp \
     Coordinates.cpp \
-    OthelloBoard.cpp \
-    Board.cpp \
-    BoardWindow.cpp \
-    StartWindow.cpp \
-    ScoresWindow.cpp
+    Boards/OthelloBoard.cpp \
+    Boards/Board.cpp \
+    Windows/BoardWindow.cpp \
+    Windows/StartWindow.cpp \
+    Windows/ScoresWindow.cpp
 
 HEADERS  += \
-    genboard.h \
     Coordinates.h \
     constants.h \
-    OthelloBoard.h \
-    Board.h \
-    BoardWindow.h \
-    StartWindow.h \
-    ScoresWindow.h
+    Boards/OthelloBoard.h \
+    Boards/Board.h \
+    Windows/BoardWindow.h \
+    Windows/StartWindow.h \
+    Windows/ScoresWindow.h

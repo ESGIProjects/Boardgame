@@ -7,8 +7,8 @@
 
 #include "StartWindow.h"
 #include "BoardWindow.h"
-#include "OthelloBoard.h"
 #include "ScoresWindow.h"
+#include "../Boards/OthelloBoard.h"
 
 StartWindow::StartWindow(QWidget *parent) : QWidget(parent){
 

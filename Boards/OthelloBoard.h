@@ -3,7 +3,7 @@
 
 #include <QVector>
 
-#include "Coordinates.h"
+#include "../Coordinates.h"
 #include "Board.h"
 
 class OthelloBoard : public Board {

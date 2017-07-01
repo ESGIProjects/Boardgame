@@ -10,7 +10,7 @@
 #include <QUrl>
 #include <string.h>
 
-#include "OthelloBoard.h"
+#include "../Boards/OthelloBoard.h"
 
 class BoardWindow : public QWidget {
     Q_OBJECT

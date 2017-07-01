@@ -1,6 +1,3 @@
-#include "StartWindow.h"
-#include "OthelloBoard.h"
-#include "constants.h"
 #include <QApplication>
 #include <QPushButton>
 #include <QIcon>
@@ -11,6 +8,10 @@
 #include <QSqlError>
 #include <QDebug>
 #include <QFileInfo>
+
+#include "Windows/StartWindow.h"
+#include "Boards/OthelloBoard.h"
+#include "constants.h"
 
 bool isDBexists(){
     //we check if bdd file exists

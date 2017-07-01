@@ -1,7 +1,7 @@
 #include <QDebug>
 
 #include "OthelloBoard.h"
-#include "constants.h"
+#include "../constants.h"
 
 // Constructor
 OthelloBoard::OthelloBoard(int rows, int cols) : Board(rows, cols) {}
