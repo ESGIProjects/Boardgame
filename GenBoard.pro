@@ -28,23 +28,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        startgame.cpp \
-    othelloboard.cpp \
-    tictactoeboard.cpp \
     genboard.cpp \
-    connectfourboard.cpp \
-    scoremenu.cpp \
-    Board.cpp \
     Coordinates.cpp \
-    genboard_real.cpp
+    OthelloBoard.cpp \
+    Board.cpp \
+    BoardWindow.cpp \
+    StartWindow.cpp \
+    ScoresWindow.cpp
 
-HEADERS  += startgame.h \
-    othelloboard.h \
-    tictactoeboard.h \
+HEADERS  += \
     genboard.h \
-    connectfourboard.h \
-    scoremenu.h \
-    Board.h \
     Coordinates.h \
     constants.h \
-    genboard_real.h
+    OthelloBoard.h \
+    Board.h \
+    BoardWindow.h \
+    StartWindow.h \
+    ScoresWindow.h

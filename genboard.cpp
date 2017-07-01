@@ -6,7 +6,7 @@
 #include <QString>
 #include <QSignalMapper>
 
-#include "startgame.h"
+#include "StartWindow.h"
 
 GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget(parent) {
 
@@ -75,7 +75,7 @@ GenBoard::GenBoard(QWidget *parent, int rows, int cols, QString title) : QWidget
 }
 
 void GenBoard::goMenu(){
-    menu = new StartGame();
+    menu = new StartWindow();
     menu->show();
     this->close();
     music->stop();

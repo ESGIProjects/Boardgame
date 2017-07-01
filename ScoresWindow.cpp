@@ -1,17 +1,15 @@
 #include <QGridLayout>
-#include <QLabel>
 #include <QSqlDatabase>
 #include <QSqlDriver>
 #include <QSqlError>
-#include <QSqlQuery>
 #include <QDebug>
 #include <QPushButton>
 #include <QDir>
 
-#include "startgame.h"
-#include "scoremenu.h"
+#include "StartWindow.h"
+#include "ScoresWindow.h"
 
-ScoreMenu::ScoreMenu(QWidget *parent) : QWidget(parent)
+ScoresWindow::ScoresWindow(QWidget *parent) : QWidget(parent)
 {
     this->setWindowTitle("Scores");
     this->setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
@@ -60,11 +58,11 @@ ScoreMenu::ScoreMenu(QWidget *parent) : QWidget(parent)
     layout->setHorizontalSpacing(200);
     layout->setVerticalSpacing(50);
 
-    connect(toMenu, &QPushButton::clicked, this, &ScoreMenu::goMenu);
+    connect(toMenu, &QPushButton::clicked, this, &ScoresWindow::goMenu);
 }
 
-void ScoreMenu::goMenu(){
-    mainMenu = new StartGame();
+void ScoresWindow::goMenu(){
+    mainMenu = new StartWindow();
     mainMenu->show();
     this->close();
 }

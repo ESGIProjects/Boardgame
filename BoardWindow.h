@@ -9,14 +9,14 @@
 #include <QMediaPlaylist>
 #include <QUrl>
 #include <string.h>
-#include "Board.h"
 
-class GenBoardReal : public QWidget {
+#include "OthelloBoard.h"
+
+class BoardWindow : public QWidget {
     Q_OBJECT
 
 public:
-    //GenBoardReal(QWidget *parent = 0, int rows = 0, int cols = 0, QString title = "");
-    GenBoardReal(Board*);
+    BoardWindow(Board&);
     QPushButton *backButton;
     QPushButton *restartButton;
     QWidget *menu;

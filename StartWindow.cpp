@@ -1,22 +1,19 @@
-#include "startgame.h"
-#include "connectfourboard.h"
-#include "othelloboard.h"
-#include "tictactoeboard.h"
-#include "genboard_real.h"
-#include "Board.h"
-#include "scoremenu.h"
 #include <QApplication>
 #include <QFont>
-#include <QVBoxLayout>
 #include <QGroupBox>
 #include <QComboBox>
 #include <QDebug>
 #include <QDir>
 
-StartGame::StartGame(QWidget *parent) : QWidget(parent){
+#include "StartWindow.h"
+#include "BoardWindow.h"
+#include "OthelloBoard.h"
+#include "ScoresWindow.h"
+
+StartWindow::StartWindow(QWidget *parent) : QWidget(parent){
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-    setWindowTitle("GenBoard Beta v2");
+    setWindowTitle("GenBoard beta 3");
     setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
@@ -50,36 +47,46 @@ StartGame::StartGame(QWidget *parent) : QWidget(parent){
 
     this->setLayout(layout);
 
-    connect(score, &QPushButton::clicked, this, &StartGame::goScoreMenu);
-    connect(start, &QPushButton::clicked, this, &StartGame::onStartGame);
+    connect(score, &QPushButton::clicked, this, &StartWindow::goScoreMenu);
+    connect(start, &QPushButton::clicked, this, &StartWindow::onStartGame);
 }
 
-void StartGame::onStartGame(){
+void StartWindow::onStartGame(){
 
-    if(connectfour->isChecked()){
+    if(connectfour->isChecked()) {
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
-        connectfourWidget = new ConnectfourBoard();
+        //connectfourWidget = new ConnectfourBoard();
+        //connectfourWidget->show();
+
+        Board *board = new OthelloBoard(8, 8);
+        connectfourWidget = new BoardWindow(*board);
         connectfourWidget->show();
+
         this->close();
     }
-    else if(othello->isChecked()){
+    else if(othello->isChecked()) {
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Othello'");
         //othelloWidget = new OthelloBoard();
-        Board *board = new Board(8, 8);
-        othelloWidget = new GenBoardReal(board);
+        Board *board = new OthelloBoard(8, 8);
+        othelloWidget = new BoardWindow(*board);
         othelloWidget->show();
         this->close();
     }
     else if(tictactoe->isChecked()){
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Tic Tac Toe'");
-        tictactoeWidget = new TictactoeBoard();
+        //tictactoeWidget = new TictactoeBoard();
+        //tictactoeWidget->show();
+
+        Board *board = new OthelloBoard(8, 8);
+        tictactoeWidget = new BoardWindow(*board);
         tictactoeWidget->show();
+
         this->close();
     }
 }
 
-void StartGame::goScoreMenu(){
-    scoreMenu = new ScoreMenu();
+void StartWindow::goScoreMenu(){
+    scoreMenu = new ScoresWindow();
     scoreMenu->show();
     this->close();
 }

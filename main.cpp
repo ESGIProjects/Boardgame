@@ -1,5 +1,5 @@
-#include "startgame.h"
-#include "Board.h"
+#include "StartWindow.h"
+#include "OthelloBoard.h"
 #include "constants.h"
 #include <QApplication>
 #include <QPushButton>
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     }
 
     QApplication a(argc, argv);
-    StartGame w;
+    StartWindow w;
     w.show();
     return a.exec();
 }

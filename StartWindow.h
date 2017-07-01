@@ -9,11 +9,11 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
-class StartGame : public QWidget {
+class StartWindow : public QWidget {
     Q_OBJECT
 
 public:
-    StartGame(QWidget *parent = 0);
+    StartWindow(QWidget *parent = 0);
     QLabel *welcome;
     QPushButton *start;
     QPushButton *score;

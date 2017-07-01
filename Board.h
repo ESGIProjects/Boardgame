@@ -2,36 +2,37 @@
 #define BOARD_H
 
 #include <QVector>
+
 #include "Coordinates.h"
 
-class Board {
+class Board
+{
 public:
-    // Constructors
-    Board(int rows, int cols);
+    Board(int, int);
     //Board(Board);
 
     // Basic board information
-    int getSquareState(int, int);
-    int getSquareState(int);
-    int score(int);
-    int getRows();
-    int getCols();
+    virtual int getSquareState(int, int) const;
+    virtual int getSquareState(int) const;
+    virtual int score(int) const = 0;
+    int getRows() const;
+    int getCols() const;
 
     // Coordinates converters
-    int coordinates2Array(Coordinates);
-    int coordinates2Array(int, int);
+    int coordinates2Array(Coordinates) const;
+    int coordinates2Array(int, int) const;
 
     // Game logic
-    bool isPlayableMove(int, int);
-    QVector<Coordinates> *playableMoves(int);
-    void move(int, int);
-    QVector<Coordinates> *neighbors(int, int);
+    virtual bool isPlayableMove(int, int) const = 0;
+    virtual QVector<Coordinates> *playableMoves(int) const = 0;
+    virtual void move(int, int) = 0;
+    virtual QVector<Coordinates> *neighbors(int, int) const = 0;
 
     // Start and reset board
-    int* startBoard() const;
-    void reset();
+    virtual int *startBoard() const = 0;
+    virtual void reset();
 
-private:
+protected:
     int *boardState;
     int rows;
     int cols;

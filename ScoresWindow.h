@@ -5,13 +5,13 @@
 #include <QPushButton>
 #include <QSqlQuery>
 
-class ScoreMenu : public QWidget
+class ScoresWindow : public QWidget
 {
 
     Q_OBJECT
 
 public:
-    ScoreMenu(QWidget *parent = 0);
+    ScoresWindow(QWidget *parent = 0);
     QLabel *connectFour;
     QLabel *scoreConnect;
     QLabel *othello;

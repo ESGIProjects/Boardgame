@@ -1,5 +1,3 @@
-#include "genboard_real.h"
-#include "constants.h"
 #include <iostream>
 #include <QDebug>
 #include <QList>
@@ -7,15 +5,17 @@
 #include <QString>
 #include <QSignalMapper>
 
-#include "startgame.h"
+#include "StartWindow.h"
+#include "BoardWindow.h"
+#include "constants.h"
 
-GenBoardReal::GenBoardReal(Board *board) : QWidget(0) {
+BoardWindow::BoardWindow(Board &board) : QWidget(0) {
 
     // Base requirements
-    QString title = "GenBoardReal";
-    this->board = board;
-    int rows = board->getRows();
-    int cols = board->getCols();
+    QString title = "BoardWindow";
+    this->board = &board;
+    int rows = board.getRows();
+    int cols = board.getCols();
 
     currentPlayer = SQUARE_PLAYER;
 
@@ -45,8 +45,8 @@ GenBoardReal::GenBoardReal(Board *board) : QWidget(0) {
     restartButton = new QPushButton("Restart", this);
     backButton = new QPushButton("Menu",this);
 
-    connect(backButton, &QPushButton::clicked, this, &GenBoardReal::goMenu);
-    connect(restartButton, &QPushButton::clicked, this, &GenBoardReal::restart);
+    connect(backButton, &QPushButton::clicked, this, &BoardWindow::goMenu);
+    connect(restartButton, &QPushButton::clicked, this, &BoardWindow::restart);
 
     // Window layout
     QGridLayout *layout = new QGridLayout();
@@ -85,21 +85,21 @@ GenBoardReal::GenBoardReal(Board *board) : QWidget(0) {
     displayBoard();
 }
 
-void GenBoardReal::goMenu() {
-    menu = new StartGame();
+void BoardWindow::goMenu() {
+    menu = new StartWindow();
     music->stop();
 
     menu->show();
     this->close();
 }
 
-void GenBoardReal::restart(){
+void BoardWindow::restart(){
     board->reset();
     currentPlayer = SQUARE_PLAYER;
     displayBoard();
 }
 
-void GenBoardReal::handleButton(int position) {
+void BoardWindow::handleButton(int position) {
     int boardPosition = convertPositionFromUIToBoard(position);
 
     qDebug() << "Handle Button : " << QString::number(boardPosition);
@@ -114,14 +114,14 @@ void GenBoardReal::handleButton(int position) {
     }
 }
 
-int GenBoardReal::convertPositionFromUIToBoard(int position) {
+int BoardWindow::convertPositionFromUIToBoard(int position) {
     int x = position % board->getCols();
     int y = position / board->getRows();
 
-    return (y+1) * (board->getCols()+2) + x + 1;
+    return board->coordinates2Array(y+1, x+1);
 }
 
-void GenBoardReal::displayBoard() {
+void BoardWindow::displayBoard() {
     QColor white(Qt::white);
     QColor black(Qt::black);
 
