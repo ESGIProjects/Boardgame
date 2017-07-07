@@ -5,6 +5,12 @@
 
 OthelloBoard::OthelloBoard() : Board(8, 8) {}
 
+OthelloBoard::OthelloBoard(const Board &board) : Board(board) {}
+
+OthelloBoard::~OthelloBoard() {
+    delete boardState;
+}
+
 int OthelloBoard::score(int player) const {
     int score = 0;
 

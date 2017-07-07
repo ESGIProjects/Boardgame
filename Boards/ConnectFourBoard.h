@@ -10,6 +10,8 @@ class ConnectFourBoard : public Board
 {
 public:
     ConnectFourBoard();
+    ConnectFourBoard(const Board&);
+    ~ConnectFourBoard();
 
     virtual int score(int) const;
     virtual bool isPlayableMove(int, int) const;

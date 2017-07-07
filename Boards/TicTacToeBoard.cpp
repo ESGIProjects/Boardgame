@@ -3,6 +3,12 @@
 
 TicTacToeBoard::TicTacToeBoard() : Board(3, 3) {}
 
+TicTacToeBoard::TicTacToeBoard(const Board &board) : Board(board) {}
+
+TicTacToeBoard::~TicTacToeBoard() {
+    delete boardState;
+}
+
 int TicTacToeBoard::score(int player) const {
     // TODO
     return 0;

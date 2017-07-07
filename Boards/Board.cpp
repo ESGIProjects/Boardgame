@@ -10,6 +10,18 @@ Board::Board(int rows, int cols)
     boardState = new int[(rows+2)*(cols+2)];
 }
 
+Board::Board(const Board &board) : Board(board.rows, board.cols) {
+    int total = (getRows()+2) * (getCols()+2);
+
+    for (int i = 0; i < total; i++) {
+        this->boardState[i] = board.boardState[i];
+    }
+}
+
+Board::~Board() {
+    delete boardState;
+}
+
 int Board::getSquareState(int row, int col) const {
     return getSquareState(coordinates2Array(row, col));
 }

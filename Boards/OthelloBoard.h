@@ -9,6 +9,8 @@
 class OthelloBoard : public Board {
 public:
     OthelloBoard();
+    OthelloBoard(const Board&);
+    ~OthelloBoard();
 
     virtual int score(int) const;
     virtual bool isPlayableMove(int, int) const;

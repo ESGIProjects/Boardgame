@@ -9,6 +9,8 @@
 class TicTacToeBoard : public Board {
 public:
     TicTacToeBoard();
+    TicTacToeBoard(const Board&);
+    ~TicTacToeBoard();
 
     virtual int score(int) const;
     virtual bool isPlayableMove(int, int) const;

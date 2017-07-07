@@ -9,7 +9,8 @@ class Board
 {
 public:
     Board(int, int);
-    //Board(Board);
+    Board(const Board&);
+    ~Board();
 
     // Basic board information
     virtual int getSquareState(int, int) const;

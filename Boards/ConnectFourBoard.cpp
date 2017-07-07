@@ -3,6 +3,12 @@
 
 ConnectFourBoard::ConnectFourBoard() : Board(6, 7) {}
 
+ConnectFourBoard::ConnectFourBoard(const Board &board) : Board(board) {}
+
+ConnectFourBoard::~ConnectFourBoard() {
+    delete boardState;
+}
+
 int ConnectFourBoard::score(int player) const {
     // TODO
     return 0;
