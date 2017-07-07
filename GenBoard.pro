@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     Windows/StartWindow.cpp \
     Windows/ScoresWindow.cpp \
     Boards/TicTacToeBoard.cpp \
-    Boards/ConnectFourBoard.cpp
+    Boards/ConnectFourBoard.cpp \
+    Strategy.cpp
 
 HEADERS  += \
     Coordinates.h \
@@ -46,4 +47,5 @@ HEADERS  += \
     Windows/StartWindow.h \
     Windows/ScoresWindow.h \
     Boards/TicTacToeBoard.h \
-    Boards/ConnectFourBoard.h
+    Boards/ConnectFourBoard.h \
+    Strategy.h
