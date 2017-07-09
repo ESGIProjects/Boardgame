@@ -7,6 +7,7 @@
 
 #include "StartWindow.h"
 #include "BoardWindow.h"
+#include "Strategy.h"
 #include "../constants.h"
 
 BoardWindow::BoardWindow(Board &board) : QWidget(0) {
@@ -81,7 +82,7 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
     this->resize(1280,720);
 
     // IA Test
-    strategy = new Strategy();
+    strategy = new Strategy(this);
 
     //restart();
     // Restart equivalent while testing IA

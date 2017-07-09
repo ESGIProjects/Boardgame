@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BOARDWINDOW_H
+#define BOARDWINDOW_H
 
 #include <QWidget>
 #include <QApplication>
@@ -11,7 +12,8 @@
 #include <string.h>
 
 #include "../Boards/OthelloBoard.h"
-#include "../Strategy.h"
+
+class Strategy;
 
 class BoardWindow : public QWidget {
     Q_OBJECT
@@ -41,3 +43,5 @@ private slots:
     void restart();
     void goMenu();
 };
+
+#endif // BOARDWINDOW_H

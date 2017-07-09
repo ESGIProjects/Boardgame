@@ -1,11 +1,12 @@
 #include <limits>
 #include "Strategy.h"
 #include "constants.h"
+#include "Windows/BoardWindow.h"
 #include <QDebug>
 
-Strategy::Strategy()
+Strategy::Strategy(BoardWindow* window)
 {
-    // TODO à connecter avec l'UI
+    this->window = window;
 }
 
 void Strategy::computeMove(OthelloBoard board) const {
@@ -37,6 +38,14 @@ void Strategy::computeMove(OthelloBoard board) const {
 void Strategy::move(Coordinates move) const {
     // TODO à connecter avec l'UI
     qDebug() << "Move called" << QString::number(move.col) << QString::number(move.row);
+
+    int row = move.row - 1;
+    int col = move.col -1;
+
+    int positionUI = row * window->board->getCols() + col;
+
+    qDebug() << "Move position " << QString::number(positionUI);
+    window->handleButton(positionUI);
 }
 
 void Strategy::pass() const {
@@ -48,6 +57,7 @@ OthelloBoard* Strategy::newBoard(OthelloBoard board, Coordinates move) const {
     newBoard->move(SQUARE_OPPONENT, newBoard->coordinates2Array(move));
     return newBoard;
 }
+
 
 int Strategy::evaluate(OthelloBoard board, int player) const {
     int utility = 0;
