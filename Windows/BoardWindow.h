@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include "../Boards/OthelloBoard.h"
+#include "../Strategy.h"
 
 class BoardWindow : public QWidget {
     Q_OBJECT
@@ -25,6 +26,7 @@ public:
     QMediaPlayer *music;
 
     Board *board;
+    Strategy *strategy;
     QPushButton **buttons;
 
     int currentPlayer;

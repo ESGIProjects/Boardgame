@@ -1,6 +1,7 @@
 #include <limits>
 #include "Strategy.h"
 #include "constants.h"
+#include <QDebug>
 
 Strategy::Strategy()
 {
@@ -13,15 +14,18 @@ void Strategy::computeMove(OthelloBoard board) const {
     if (playableMoves->empty()) {
         pass();
     } else {
-        Coordinates* bestMove = nullptr;
+        Coordinates *bestMove = nullptr;
         int bestValue;
 
         for (int i = 0; i < playableMoves->size(); i++) {
+            qDebug() << "Playable move : " << QString::number(playableMoves->at(i).col) << QString::number(playableMoves->at(i).row);
+
             OthelloBoard* newGameBoard = newBoard(board, playableMoves->at(i));
             int value = minimax(*newGameBoard, SQUARE_OPPONENT, 2);
+            qDebug() << "Value : " << QString::number(value);
 
             if (!bestMove || value > bestValue) {
-                *bestMove = playableMoves->at(i);
+                bestMove = new Coordinates(playableMoves->at(i));
                 bestValue = value;
             }
         }
@@ -32,6 +36,7 @@ void Strategy::computeMove(OthelloBoard board) const {
 
 void Strategy::move(Coordinates move) const {
     // TODO à connecter avec l'UI
+    qDebug() << "Move called" << QString::number(move.col) << QString::number(move.row);
 }
 
 void Strategy::pass() const {
@@ -47,14 +52,16 @@ OthelloBoard* Strategy::newBoard(OthelloBoard board, Coordinates move) const {
 int Strategy::evaluate(OthelloBoard board, int player) const {
     int utility = 0;
 
+    int *heuristics = board.heuristicBoard();
+
     for (int i = 1; i < (board.getCols()+1); i++) {
         for (int j = 1; j < (board.getRows()+1); j++) {
             int currentSquare = board.getSquareState(board.coordinates2Array(i, j));
 
             if (currentSquare == player) {
-                utility += 1; // REMPLACER PAR LES HEURISTIQUES
+                utility += heuristics[board.coordinates2Array(i, j)];
             } else if (currentSquare == -player) {
-                utility -= 1; // REMPLACER PAR LES HEURISTIQUES
+                utility -= heuristics[board.coordinates2Array(i, j)];
             }
         }
     }

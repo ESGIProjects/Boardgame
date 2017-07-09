@@ -10,7 +10,7 @@ class Board
 public:
     Board(int, int);
     Board(const Board&);
-    ~Board();
+    //~Board();
 
     // Basic board information
     virtual int getSquareState(int, int) const;
@@ -31,6 +31,7 @@ public:
 
     // Start and reset board
     virtual int *startBoard() const = 0;
+    virtual int *heuristicBoard() const = 0;
     virtual void reset();
 
 protected:

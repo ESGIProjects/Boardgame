@@ -7,9 +7,9 @@ OthelloBoard::OthelloBoard() : Board(8, 8) {}
 
 OthelloBoard::OthelloBoard(const Board &board) : Board(board) {}
 
-OthelloBoard::~OthelloBoard() {
-    delete boardState;
-}
+//OthelloBoard::~OthelloBoard() {
+//    delete boardState;
+//}
 
 int OthelloBoard::score(int player) const {
     int score = 0;
@@ -54,7 +54,7 @@ QVector<Coordinates> *OthelloBoard::playableMoves(int player) const {
 
     for (int i = 1; i < 9; i++) {
         for (int j = 1; j < 9; j++) {
-            if (isPlayableMove(player, i * cols + j)) {
+            if (isPlayableMove(player, coordinates2Array(i, j))) {
                 const Coordinates *move = new Coordinates(i, j);
                 moves->insert(moves->size(), *move);
             }
@@ -118,4 +118,21 @@ int *OthelloBoard::startBoard() const {
         };
 
     return startBoard;
+}
+
+int *OthelloBoard::heuristicBoard() const {
+    int* heuristicBoard = new int[100] {
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 500, -150, 30, 10, 10, 30, -150, 500, 0,
+            0, -150, -250, 0, 0, 0, 0, -250, -150, 0,
+            0, 30, 0, 1, 2, 2, 1, 0, 30, 0,
+            0, 10, 0, 2, 16, 16, 2, 0, 10, 0,
+            0, 10, 0, 2, 16, 16, 2, 0, 10, 0,
+            0, 30, 0, 1, 2, 2, 1, 0, 30, 0,
+            0, -150, -250, 0, 0, 0, 0, -250, -150, 0,
+            0, 500, -150, 30, 10, 10, 30, -150, 500, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    };
+
+    return heuristicBoard;
 }

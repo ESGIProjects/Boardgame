@@ -6,6 +6,7 @@ class Coordinates {
 public:
     Coordinates();
     Coordinates(int, int);
+    Coordinates(const Coordinates&);
     int row;
     int col;
 };

@@ -5,9 +5,9 @@ TicTacToeBoard::TicTacToeBoard() : Board(3, 3) {}
 
 TicTacToeBoard::TicTacToeBoard(const Board &board) : Board(board) {}
 
-TicTacToeBoard::~TicTacToeBoard() {
-    delete boardState;
-}
+//TicTacToeBoard::~TicTacToeBoard() {
+//    delete boardState;
+//}
 
 int TicTacToeBoard::score(int player) const {
     // TODO
@@ -46,3 +46,17 @@ int *TicTacToeBoard::startBoard() const {
 
     return startBoard;
 }
+
+int *TicTacToeBoard::heuristicBoard() const {
+    // TODO
+    int* heuristicBoard = new int[25] {
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0
+    };
+
+    return heuristicBoard;
+}
+

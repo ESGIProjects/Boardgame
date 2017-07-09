@@ -5,9 +5,9 @@ ConnectFourBoard::ConnectFourBoard() : Board(6, 7) {}
 
 ConnectFourBoard::ConnectFourBoard(const Board &board) : Board(board) {}
 
-ConnectFourBoard::~ConnectFourBoard() {
-    delete boardState;
-}
+//ConnectFourBoard::~ConnectFourBoard() {
+//    delete boardState;
+//}
 
 int ConnectFourBoard::score(int player) const {
     // TODO
@@ -48,4 +48,19 @@ int *ConnectFourBoard::startBoard() const {
         };
 
     return startBoard;
+}
+
+int *ConnectFourBoard::heuristicBoard() const {
+    int* heuristicBoard = new int[72] {
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0
+    };
+
+    return heuristicBoard;
 }

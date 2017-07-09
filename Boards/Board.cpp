@@ -18,9 +18,9 @@ Board::Board(const Board &board) : Board(board.rows, board.cols) {
     }
 }
 
-Board::~Board() {
-    delete boardState;
-}
+//Board::~Board() {
+//    delete boardState;
+//}
 
 int Board::getSquareState(int row, int col) const {
     return getSquareState(coordinates2Array(row, col));

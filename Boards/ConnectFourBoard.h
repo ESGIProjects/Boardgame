@@ -11,7 +11,7 @@ class ConnectFourBoard : public Board
 public:
     ConnectFourBoard();
     ConnectFourBoard(const Board&);
-    ~ConnectFourBoard();
+    //~ConnectFourBoard();
 
     virtual int score(int) const;
     virtual bool isPlayableMove(int, int) const;
@@ -19,6 +19,7 @@ public:
     virtual void move(int, int);
     virtual QVector<Coordinates> *neighbors(int, int) const;
     virtual int* startBoard() const;
+    virtual int* heuristicBoard() const;
 };
 
 #endif // CONNECTFOURBOARD_H

@@ -80,7 +80,14 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
     this->setLayout(layout);
     this->resize(1280,720);
 
-    restart();
+    // IA Test
+    strategy = new Strategy();
+
+    //restart();
+    // Restart equivalent while testing IA
+    board.reset();
+    currentPlayer = SQUARE_PLAYER;
+    displayBoard();
 }
 
 void BoardWindow::goMenu() {
@@ -92,9 +99,13 @@ void BoardWindow::goMenu() {
 }
 
 void BoardWindow::restart(){
-    board->reset();
+    /*board->reset();
     currentPlayer = SQUARE_PLAYER;
-    displayBoard();
+    displayBoard();*/
+
+    // IA Test
+    strategy->computeMove(*board);
+
 }
 
 void BoardWindow::handleButton(int position) {
