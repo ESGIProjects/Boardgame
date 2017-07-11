@@ -9,6 +9,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QUrl>
+#include <QTextEdit>
 #include <string.h>
 
 #include "../Boards/OthelloBoard.h"
@@ -31,10 +32,15 @@ public:
     Strategy *strategy;
     QPushButton **buttons;
 
+    QTextEdit *actionTextEdit;
+
     int currentPlayer;
 
     void displayBoard();
     int convertPositionFromUIToBoard(int);
+
+private:
+    void insertAction(int, int);
 
 public slots:
     virtual void handleButton(int);

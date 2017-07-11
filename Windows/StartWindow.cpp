@@ -51,6 +51,10 @@ StartWindow::StartWindow(QWidget *parent) : QWidget(parent){
 
     connect(score, &QPushButton::clicked, this, &StartWindow::goScoreMenu);
     connect(start, &QPushButton::clicked, this, &StartWindow::onStartGame);
+
+    // Fixing size issue when back from game
+    this->setMaximumHeight(480);
+    this->setMaximumWidth(640);
 }
 
 void StartWindow::onStartGame(){

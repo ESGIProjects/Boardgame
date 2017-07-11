@@ -77,18 +77,24 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
     layout->addWidget(backButton,1,0);
     layout->addWidget(restartButton,1,1);
 
+    // Action text block
+    actionTextEdit = new QTextEdit();
+    actionTextEdit->insertHtml("<span color=\"blue\">Début de la partie !</span><br /><br />");
+    actionTextEdit->setReadOnly(true);
+
+    layout->addWidget(actionTextEdit, 0, 1);
+    layout->setColumnStretch(0, 2);
+
     this->setWindowTitle(title);
     this->setLayout(layout);
     this->resize(1280,720);
+    this->setMaximumSize(1280, 720);
 
-    // IA Test
+    // IA configuration
     strategy = new Strategy(this);
 
-    //restart();
-    // Restart equivalent while testing IA
-    board.reset();
-    currentPlayer = SQUARE_PLAYER;
-    displayBoard();
+    // Correctly displaying board
+    restart();
 }
 
 void BoardWindow::goMenu() {
@@ -118,6 +124,7 @@ void BoardWindow::handleButton(int position) {
         board->move(currentPlayer, boardPosition);
         qDebug() << "Playable move";
         displayBoard();
+        insertAction(currentPlayer, position);
         currentPlayer = -currentPlayer;
 
         // Let IA decide its next move
@@ -171,4 +178,20 @@ void BoardWindow::displayBoard() {
             button->update();
         }
     }
+}
+
+void BoardWindow::insertAction(int player, int position) {
+    int x = position % board->getCols();
+    int y = position / board->getRows();
+
+    QString str = "";
+
+    if (player == SQUARE_PLAYER)
+        str += "Joueur";
+    else
+        str += "Ordinateur";
+
+    str += " a placé un pion sur la case " + QString::number(x) + ", " + QString::number(y) + "<br /><br />";
+
+    actionTextEdit->insertHtml(str);
 }
