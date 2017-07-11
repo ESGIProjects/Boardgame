@@ -25,7 +25,7 @@ public:
 
     // Game logic
     virtual bool isPlayableMove(int, int) const = 0;
-    virtual QVector<Coordinates> *playableMoves(int) const = 0;
+    QVector<Coordinates> *playableMoves(int) const;
     virtual void move(int, int) = 0;
     virtual QVector<Coordinates> *neighbors(int, int) const = 0;
 

@@ -19,12 +19,6 @@ bool ConnectFourBoard::isPlayableMove(int player, int position) const {
     return false;
 }
 
-QVector<Coordinates> *ConnectFourBoard::playableMoves(int player) const {
-    QVector<Coordinates> *moves = new QVector<Coordinates>();
-    // TODO
-    return moves;
-}
-
 void ConnectFourBoard::move(int player, int position) {
     // TODO
 }

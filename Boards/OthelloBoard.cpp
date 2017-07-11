@@ -49,21 +49,6 @@ bool OthelloBoard::isPlayableMove(int player, int position) const {
     return false;
 }
 
-QVector<Coordinates> *OthelloBoard::playableMoves(int player) const {
-    QVector<Coordinates> *moves = new QVector<Coordinates>();
-
-    for (int i = 1; i < 9; i++) {
-        for (int j = 1; j < 9; j++) {
-            if (isPlayableMove(player, coordinates2Array(i, j))) {
-                const Coordinates *move = new Coordinates(i, j);
-                moves->insert(moves->size(), *move);
-            }
-        }
-    }
-
-    return moves;
-}
-
 void OthelloBoard::move(int player, int position) {
     int opponent = -player;
 

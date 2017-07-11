@@ -46,6 +46,21 @@ int Board::coordinates2Array(int row, int col) const {
     return row * (cols+2) + col;
 }
 
+QVector<Coordinates> *Board::playableMoves(int player) const {
+    QVector<Coordinates> *moves = new QVector<Coordinates>();
+
+    for (int i = 1; i <= rows; i++) {
+        for (int j = 1; j <= cols; j++) {
+            if (isPlayableMove(player, coordinates2Array(i, j))) {
+                const Coordinates *move = new Coordinates(i, j);
+                moves->insert(moves->size(), *move);
+            }
+        }
+    }
+
+    return moves;
+}
+
 void Board::reset() {
     qDebug() << "Restart";
     int *start = startBoard();

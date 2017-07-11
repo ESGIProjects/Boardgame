@@ -19,12 +19,6 @@ bool TicTacToeBoard::isPlayableMove(int player, int position) const {
     return false;
 }
 
-QVector<Coordinates> *TicTacToeBoard::playableMoves(int player) const {
-    QVector<Coordinates> *moves = new QVector<Coordinates>();
-    // TODO
-    return moves;
-}
-
 void TicTacToeBoard::move(int player, int position) {
     // TODO
 }
