@@ -79,7 +79,7 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
 
     // Action text block
     actionTextEdit = new QTextEdit();
-    actionTextEdit->insertHtml("<span color=\"blue\">Début de la partie !</span><br /><br />");
+    actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Début de la partie !</span><br /><br />");
     actionTextEdit->setReadOnly(true);
 
     layout->addWidget(actionTextEdit, 0, 1);
@@ -109,10 +109,6 @@ void BoardWindow::restart(){
     board->reset();
     currentPlayer = SQUARE_PLAYER;
     displayBoard();
-
-    // IA Test
-    //strategy->computeMove(*board);
-
 }
 
 void BoardWindow::handleButton(int position) {
@@ -181,17 +177,17 @@ void BoardWindow::displayBoard() {
 }
 
 void BoardWindow::insertAction(int player, int position) {
-    int x = position % board->getCols();
-    int y = position / board->getRows();
+    int x = position % board->getCols() + 1;
+    int y = position / board->getRows() + 1;
 
     QString str = "";
 
     if (player == SQUARE_PLAYER)
-        str += "Joueur";
+        str += "<span style=\"color: #0000FF\">- Joueur";
     else
-        str += "Ordinateur";
+        str += "<span style=\"color: #FF0000\">- Ordinateur";
 
-    str += " a placé un pion sur la case " + QString::number(x) + ", " + QString::number(y) + "<br /><br />";
+    str += " a placé un pion sur la case " + QString::number(y) + "," + QString::number(x) + "</span><br />";
 
     actionTextEdit->insertHtml(str);
 }
