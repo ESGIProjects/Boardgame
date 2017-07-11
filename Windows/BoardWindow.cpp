@@ -100,12 +100,12 @@ void BoardWindow::goMenu() {
 }
 
 void BoardWindow::restart(){
-    /*board->reset();
+    board->reset();
     currentPlayer = SQUARE_PLAYER;
-    displayBoard();*/
+    displayBoard();
 
     // IA Test
-    strategy->computeMove(*board);
+    //strategy->computeMove(*board);
 
 }
 
@@ -119,6 +119,13 @@ void BoardWindow::handleButton(int position) {
         qDebug() << "Playable move";
         displayBoard();
         currentPlayer = -currentPlayer;
+
+        // Let IA decide its next move
+        if (currentPlayer == SQUARE_OPPONENT) {
+            strategy->computeMove(*board);
+        }
+
+
     } else {
         qDebug() << "Not a valid move";
     }
