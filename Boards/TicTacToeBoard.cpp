@@ -53,3 +53,7 @@ int *TicTacToeBoard::heuristicBoard() const {
     return heuristicBoard;
 }
 
+bool TicTacToeBoard::isGameOver() const {
+    // TODO
+    return false;
+}

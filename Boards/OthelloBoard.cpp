@@ -121,3 +121,10 @@ int *OthelloBoard::heuristicBoard() const {
 
     return heuristicBoard;
 }
+
+bool OthelloBoard::isGameOver() const {
+    QVector<Coordinates>* playerMoves = playableMoves(SQUARE_PLAYER);
+    QVector<Coordinates>* opponentMoves = playableMoves(SQUARE_OPPONENT);
+
+    return playerMoves->isEmpty() && opponentMoves->isEmpty();
+}

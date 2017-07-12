@@ -19,6 +19,7 @@ public:
     virtual QVector<Coordinates> *neighbors(int, int) const;
     virtual int* startBoard() const;
     virtual int* heuristicBoard() const;
+    virtual bool isGameOver() const;
 };
 
 #endif // CONNECTFOURBOARD_H

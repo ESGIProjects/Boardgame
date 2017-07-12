@@ -28,6 +28,7 @@ public:
     QVector<Coordinates> *playableMoves(int) const;
     virtual void move(int, int) = 0;
     virtual QVector<Coordinates> *neighbors(int, int) const = 0;
+    virtual bool isGameOver() const = 0;
 
     // Start and reset board
     virtual int *startBoard() const = 0;

@@ -58,3 +58,8 @@ int *ConnectFourBoard::heuristicBoard() const {
 
     return heuristicBoard;
 }
+
+bool ConnectFourBoard::isGameOver() const {
+    // TODO
+    return false;
+}

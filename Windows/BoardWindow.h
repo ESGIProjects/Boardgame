@@ -38,12 +38,13 @@ public:
 
     void displayBoard();
     int convertPositionFromUIToBoard(int);
+    void pass();
 
 private:
     void insertAction(int, int);
 
 public slots:
-    virtual void handleButton(int);
+    void handleButton(int);
 
 private slots:
     void restart();

@@ -19,11 +19,9 @@ void Strategy::computeMove(OthelloBoard board) const {
         int bestValue;
 
         for (int i = 0; i < playableMoves->size(); i++) {
-            qDebug() << "Playable move : " << QString::number(playableMoves->at(i).col) << QString::number(playableMoves->at(i).row);
 
             OthelloBoard* newGameBoard = newBoard(board, playableMoves->at(i));
             int value = minimax(*newGameBoard, SQUARE_OPPONENT, 2);
-            qDebug() << "Value : " << QString::number(value);
 
             if (!bestMove || value > bestValue) {
                 bestMove = new Coordinates(playableMoves->at(i));
@@ -36,7 +34,6 @@ void Strategy::computeMove(OthelloBoard board) const {
 }
 
 void Strategy::move(Coordinates move) const {
-    // TODO à connecter avec l'UI
     qDebug() << "Move called" << QString::number(move.col) << QString::number(move.row);
 
     int row = move.row - 1;
@@ -44,12 +41,11 @@ void Strategy::move(Coordinates move) const {
 
     int positionUI = row * window->board->getCols() + col;
 
-    qDebug() << "Move position " << QString::number(positionUI);
     window->handleButton(positionUI);
 }
 
 void Strategy::pass() const {
-    // TODO à connecter avec l'UI
+    window->pass();
 }
 
 OthelloBoard* Strategy::newBoard(OthelloBoard board, Coordinates move) const {

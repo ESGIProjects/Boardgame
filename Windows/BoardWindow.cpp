@@ -108,7 +108,11 @@ void BoardWindow::goMenu() {
 void BoardWindow::restart(){
     board->reset();
     currentPlayer = SQUARE_PLAYER;
+
     displayBoard();
+
+    actionTextEdit->clear();
+    actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Début de la partie !</span><br /><br />");
 }
 
 void BoardWindow::handleButton(int position) {
@@ -190,4 +194,12 @@ void BoardWindow::insertAction(int player, int position) {
     str += " a placé un pion sur la case " + QString::number(y) + "," + QString::number(x) + "</span><br />";
 
     actionTextEdit->insertHtml(str);
+}
+
+void BoardWindow::pass() {
+    currentPlayer = -currentPlayer;
+
+    if (currentPlayer == SQUARE_OPPONENT) {
+        strategy->computeMove(*board);
+    }
 }
