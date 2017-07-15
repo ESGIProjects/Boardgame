@@ -116,10 +116,14 @@ void BoardWindow::restart(){
 }
 
 void BoardWindow::handleButton(int position) {
-    int boardPosition = convertPositionFromUIToBoard(position);
+    // 1. Peut-on toujours jouer ?
+    if (board->isGameOver()) return;
 
+    // 2. Conversion de la position UI vers position de jeu
+    int boardPosition = convertPositionFromUIToBoard(position);
     qDebug() << "Handle Button : " << QString::number(boardPosition);
 
+    // 3. Jeu
     if (board->isPlayableMove(currentPlayer, boardPosition)) {
         board->move(currentPlayer, boardPosition);
         qDebug() << "Playable move";
@@ -127,12 +131,17 @@ void BoardWindow::handleButton(int position) {
         insertAction(currentPlayer, position);
         currentPlayer = -currentPlayer;
 
+        // 4. Jeu terminé?
+        if (board->isGameOver()) {
+            actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Fin de la partie !</span><br /><br />");
+            // TODO afficher score
+            return;
+        }
+
         // Let IA decide its next move
         if (currentPlayer == SQUARE_OPPONENT) {
             strategy->computeMove(*board);
         }
-
-
     } else {
         qDebug() << "Not a valid move";
     }
