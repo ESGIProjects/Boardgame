@@ -9,7 +9,7 @@ ConnectFourBoard::ConnectFourBoard(const Board &board) : Board(board) {}
 //    delete boardState;
 //}
 
-int ConnectFourBoard::score(int player) const {
+int ConnectFourBoard::winner() const {
     // TODO
     return 0;
 }

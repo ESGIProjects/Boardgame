@@ -11,18 +11,25 @@ OthelloBoard::OthelloBoard(const Board &board) : Board(board) {}
 //    delete boardState;
 //}
 
-int OthelloBoard::score(int player) const {
-    int score = 0;
+int OthelloBoard::winner() const {
+    int player = 0;
+    int opponent = 0;
 
     for (int i = 1; i < (cols+1); i++) {
         for (int j = 1; j < (rows+1); j++) {
-            if (boardState[coordinates2Array(i, j)] == player) {
-                score++;
+            if (boardState[coordinates2Array(i, j)] == SQUARE_PLAYER) {
+                player++;
+            }
+
+            if (boardState[coordinates2Array(i, j)] == SQUARE_OPPONENT) {
+                opponent++;
             }
         }
     }
 
-    return score;
+    if (player > opponent) return 1;
+    if (opponent > player) return -1;
+    return 0;
 }
 
 bool OthelloBoard::isPlayableMove(int player, int position) const {

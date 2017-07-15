@@ -15,7 +15,7 @@ public:
     // Basic board information
     virtual int getSquareState(int, int) const;
     virtual int getSquareState(int) const;
-    virtual int score(int) const = 0;
+    virtual int winner() const = 0;
     int getRows() const;
     int getCols() const;
 

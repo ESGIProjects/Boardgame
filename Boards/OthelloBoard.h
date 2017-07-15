@@ -12,7 +12,7 @@ public:
     OthelloBoard(const Board&);
     //~OthelloBoard();
 
-    virtual int score(int) const;
+    virtual int winner() const;
     virtual bool isPlayableMove(int, int) const;
     virtual void move(int, int);
     virtual QVector<Coordinates> *neighbors(int, int) const;
