@@ -6,7 +6,9 @@
 #include <QDir>
 
 #include "StartWindow.h"
-#include "BoardWindow.h"
+#include "ConnectFourWindow.h"
+#include "OthelloWindow.h"
+#include "TicTacToeWindow.h"
 #include "ScoresWindow.h"
 #include "../Boards/ConnectFourBoard.h"
 #include "../Boards/OthelloBoard.h"
@@ -62,27 +64,27 @@ void StartWindow::onStartGame(){
     if(connectfour->isChecked()) {
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
 
-        Board *board = new ConnectFourBoard();
-        connectfourWidget = new BoardWindow(*board);
-        connectfourWidget->show();
+        ConnectFourBoard *board = new ConnectFourBoard();
+        ConnectFourWindow *widget = new ConnectFourWindow(*board);
+        widget->show();
 
         this->close();
     }
     else if(othello->isChecked()) {
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Othello'");
 
-        Board *board = new OthelloBoard();
-        othelloWidget = new BoardWindow(*board);
-        othelloWidget->show();
+        OthelloBoard *board = new OthelloBoard();
+        OthelloWindow *widget = new OthelloWindow(*board);
+        widget->show();
 
         this->close();
     }
     else if(tictactoe->isChecked()){
         query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Tic Tac Toe'");
 
-        Board *board = new TicTacToeBoard();
-        tictactoeWidget = new BoardWindow(*board);
-        tictactoeWidget->show();
+        TicTacToeBoard *board = new TicTacToeBoard();
+        TicTacToeWindow *widget = new TicTacToeWindow(*board);
+        widget->show();
 
         this->close();
     }

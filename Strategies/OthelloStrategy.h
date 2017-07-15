@@ -1,15 +1,15 @@
-#ifndef STRATEGY_H
-#define STRATEGY_H
+#ifndef OTHELLOSTRATEGY_H
+#define OTHELLOSTRATEGY_H
 
 #include "Boards/OthelloBoard.h"
 #include "Coordinates.h"
 
-class BoardWindow;
+class OthelloWindow;
 
-class Strategy
+class OthelloStrategy
 {
 public:
-    Strategy(BoardWindow*);
+    OthelloStrategy(OthelloWindow*);
     void computeMove(OthelloBoard) const;
     void move(Coordinates) const;
     void pass() const;
@@ -17,7 +17,7 @@ public:
     int evaluate(OthelloBoard, int) const;
     int minimax(OthelloBoard, int, int) const;
 
-    BoardWindow *window;
+    OthelloWindow *window;
 };
 
-#endif // STRATEGY_H
+#endif // OTHELLOSTRATEGY_H

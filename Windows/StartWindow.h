@@ -20,10 +20,6 @@ public:
     QRadioButton *connectfour;
     QRadioButton *othello;
     QRadioButton *tictactoe;
-
-    QWidget *connectfourWidget;
-    QWidget *othelloWidget;
-    QWidget *tictactoeWidget;
     QWidget *scoreMenu;
     QStackedWidget *sw;
     QVBoxLayout *layout;

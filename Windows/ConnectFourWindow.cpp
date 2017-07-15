@@ -6,11 +6,11 @@
 #include <QSignalMapper>
 
 #include "StartWindow.h"
-#include "BoardWindow.h"
-#include "Strategy.h"
+#include "ConnectFourWindow.h"
+#include "../Strategies/ConnectFourStrategy.h"
 #include "../constants.h"
 
-BoardWindow::BoardWindow(Board &board) : QWidget(0) {
+ConnectFourWindow::ConnectFourWindow(ConnectFourBoard &board) : QWidget(0) {
 
     // Base requirements
     QString title = "BoardWindow";
@@ -44,8 +44,8 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
     restartButton = new QPushButton("Restart", this);
     backButton = new QPushButton("Menu",this);
 
-    connect(backButton, &QPushButton::clicked, this, &BoardWindow::goMenu);
-    connect(restartButton, &QPushButton::clicked, this, &BoardWindow::restart);
+    connect(backButton, &QPushButton::clicked, this, &ConnectFourWindow::goMenu);
+    connect(restartButton, &QPushButton::clicked, this, &ConnectFourWindow::restart);
 
     // Window layout
     QGridLayout *layout = new QGridLayout();
@@ -91,13 +91,13 @@ BoardWindow::BoardWindow(Board &board) : QWidget(0) {
     this->setMaximumSize(1280, 720);
 
     // IA configuration
-    strategy = new Strategy(this);
+    strategy = new ConnectFourStrategy(this);
 
     // Correctly displaying board
     restart();
 }
 
-void BoardWindow::goMenu() {
+void ConnectFourWindow::goMenu() {
     menu = new StartWindow();
     music->stop();
 
@@ -105,7 +105,7 @@ void BoardWindow::goMenu() {
     this->close();
 }
 
-void BoardWindow::restart(){
+void ConnectFourWindow::restart(){
     board->reset();
     currentPlayer = SQUARE_PLAYER;
 
@@ -115,7 +115,7 @@ void BoardWindow::restart(){
     actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Début de la partie !</span><br /><br />");
 }
 
-void BoardWindow::handleButton(int position) {
+void ConnectFourWindow::handleButton(int position) {
     // 1. Peut-on toujours jouer ?
     if (board->isGameOver()) return;
 
@@ -147,14 +147,14 @@ void BoardWindow::handleButton(int position) {
     }
 }
 
-int BoardWindow::convertPositionFromUIToBoard(int position) {
+int ConnectFourWindow::convertPositionFromUIToBoard(int position) {
     int x = position / board->getRows();
     int y = position % board->getCols();
 
     return board->coordinates2Array(x+1, y+1);
 }
 
-void BoardWindow::displayBoard() {
+void ConnectFourWindow::displayBoard() {
     QColor white(Qt::white);
     QColor black(Qt::black);
 
@@ -189,7 +189,7 @@ void BoardWindow::displayBoard() {
     }
 }
 
-void BoardWindow::insertAction(int player, int position) {
+void ConnectFourWindow::insertAction(int player, int position) {
     int x = position % board->getCols() + 1;
     int y = position / board->getRows() + 1;
 
@@ -205,7 +205,7 @@ void BoardWindow::insertAction(int player, int position) {
     actionTextEdit->insertHtml(str);
 }
 
-void BoardWindow::pass() {
+void ConnectFourWindow::pass() {
     currentPlayer = -currentPlayer;
 
     if (currentPlayer == SQUARE_OPPONENT) {

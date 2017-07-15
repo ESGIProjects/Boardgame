@@ -1,5 +1,5 @@
-#ifndef BOARDWINDOW_H
-#define BOARDWINDOW_H
+#ifndef OTHELLOWINDOW_H
+#define OTHELLOWINDOW_H
 
 #include <QWidget>
 #include <QApplication>
@@ -14,13 +14,13 @@
 
 #include "../Boards/OthelloBoard.h"
 
-class Strategy;
+class OthelloStrategy;
 
-class BoardWindow : public QWidget {
+class OthelloWindow : public QWidget {
     Q_OBJECT
 
 public:
-    BoardWindow(Board&);
+    OthelloWindow(OthelloBoard&);
     QPushButton *backButton;
     QPushButton *restartButton;
     QWidget *menu;
@@ -28,8 +28,8 @@ public:
     QMediaPlaylist *playList;
     QMediaPlayer *music;
 
-    Board *board;
-    Strategy *strategy;
+    OthelloBoard *board;
+    OthelloStrategy *strategy;
     QPushButton **buttons;
 
     QTextEdit *actionTextEdit;
@@ -51,4 +51,4 @@ private slots:
     void goMenu();
 };
 
-#endif // BOARDWINDOW_H
+#endif // OTHELLOWINDOW_H

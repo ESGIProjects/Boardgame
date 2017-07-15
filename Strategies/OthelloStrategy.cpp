@@ -1,15 +1,15 @@
 #include <limits>
-#include "Strategy.h"
+#include "OthelloStrategy.h"
 #include "constants.h"
-#include "Windows/BoardWindow.h"
+#include "Windows/OthelloWindow.h"
 #include <QDebug>
 
-Strategy::Strategy(BoardWindow* window)
+OthelloStrategy::OthelloStrategy(OthelloWindow* window)
 {
     this->window = window;
 }
 
-void Strategy::computeMove(OthelloBoard board) const {
+void OthelloStrategy::computeMove(OthelloBoard board) const {
     QVector<Coordinates>* playableMoves = board.playableMoves(SQUARE_OPPONENT);
 
     if (playableMoves->empty()) {
@@ -33,7 +33,7 @@ void Strategy::computeMove(OthelloBoard board) const {
     }
 }
 
-void Strategy::move(Coordinates move) const {
+void OthelloStrategy::move(Coordinates move) const {
     qDebug() << "Move called" << QString::number(move.col) << QString::number(move.row);
 
     int row = move.row - 1;
@@ -44,18 +44,18 @@ void Strategy::move(Coordinates move) const {
     window->handleButton(positionUI);
 }
 
-void Strategy::pass() const {
+void OthelloStrategy::pass() const {
     window->pass();
 }
 
-OthelloBoard* Strategy::newBoard(OthelloBoard board, Coordinates move) const {
+OthelloBoard* OthelloStrategy::newBoard(OthelloBoard board, Coordinates move) const {
     OthelloBoard* newBoard = new OthelloBoard(board);
     newBoard->move(SQUARE_OPPONENT, newBoard->coordinates2Array(move));
     return newBoard;
 }
 
 
-int Strategy::evaluate(OthelloBoard board, int player) const {
+int OthelloStrategy::evaluate(OthelloBoard board, int player) const {
     int utility = 0;
 
     int *heuristics = board.heuristicBoard();
@@ -75,7 +75,7 @@ int Strategy::evaluate(OthelloBoard board, int player) const {
     return utility;
 }
 
-int Strategy::minimax(OthelloBoard board, int player, int depth) const {
+int OthelloStrategy::minimax(OthelloBoard board, int player, int depth) const {
     QVector<Coordinates>* playableMoves = board.playableMoves(SQUARE_OPPONENT);
 
     if (depth == 0 || playableMoves->empty()) {

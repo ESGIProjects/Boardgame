@@ -31,21 +31,29 @@ SOURCES += main.cpp\
     Coordinates.cpp \
     Boards/OthelloBoard.cpp \
     Boards/Board.cpp \
-    Windows/BoardWindow.cpp \
     Windows/StartWindow.cpp \
     Windows/ScoresWindow.cpp \
     Boards/TicTacToeBoard.cpp \
     Boards/ConnectFourBoard.cpp \
-    Strategy.cpp
+    Windows/ConnectFourWindow.cpp \
+    Windows/OthelloWindow.cpp \
+    Windows/TicTacToeWindow.cpp \
+    Strategies/OthelloStrategy.cpp \
+    Strategies/TicTacToeStrategy.cpp \
+    Strategies/ConnectFourStrategy.cpp
 
 HEADERS  += \
     Coordinates.h \
     constants.h \
     Boards/OthelloBoard.h \
     Boards/Board.h \
-    Windows/BoardWindow.h \
     Windows/StartWindow.h \
     Windows/ScoresWindow.h \
     Boards/TicTacToeBoard.h \
     Boards/ConnectFourBoard.h \
-    Strategy.h
+    Windows/OthelloWindow.h \
+    Windows/ConnectFourWindow.h \
+    Windows/TicTacToeWindow.h \
+    Strategies/OthelloStrategy.h \
+    Strategies/TicTacToeStrategy.h \
+    Strategies/ConnectFourStrategy.h
