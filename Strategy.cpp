@@ -9,7 +9,7 @@ Strategy::Strategy(BoardWindow* window)
     this->window = window;
 }
 
-void Strategy::computeMove(TicTacToeBoard board) const {
+void Strategy::computeMove(OthelloBoard board) const {
     QVector<Coordinates>* playableMoves = board.playableMoves(SQUARE_OPPONENT);
 
     if (playableMoves->empty()) {
@@ -20,8 +20,8 @@ void Strategy::computeMove(TicTacToeBoard board) const {
 
         for (int i = 0; i < playableMoves->size(); i++) {
 
-            TicTacToeBoard* newGameBoard = newBoard(board, playableMoves->at(i));
-            int value = minimax(*newGameBoard, SQUARE_OPPONENT, 4);
+            OthelloBoard* newGameBoard = newBoard(board, playableMoves->at(i));
+            int value = minimax(*newGameBoard, SQUARE_OPPONENT, 2);
 
             if (!bestMove || value > bestValue) {
                 bestMove = new Coordinates(playableMoves->at(i));
@@ -48,14 +48,14 @@ void Strategy::pass() const {
     window->pass();
 }
 
-TicTacToeBoard* Strategy::newBoard(TicTacToeBoard board, Coordinates move) const {
-    TicTacToeBoard* newBoard = new TicTacToeBoard(board);
+OthelloBoard* Strategy::newBoard(OthelloBoard board, Coordinates move) const {
+    OthelloBoard* newBoard = new OthelloBoard(board);
     newBoard->move(SQUARE_OPPONENT, newBoard->coordinates2Array(move));
     return newBoard;
 }
 
 
-int Strategy::evaluate(TicTacToeBoard board, int player) const {
+int Strategy::evaluate(OthelloBoard board, int player) const {
     int utility = 0;
 
     int *heuristics = board.heuristicBoard();
@@ -75,7 +75,7 @@ int Strategy::evaluate(TicTacToeBoard board, int player) const {
     return utility;
 }
 
-int Strategy::minimax(TicTacToeBoard board, int player, int depth) const {
+int Strategy::minimax(OthelloBoard board, int player, int depth) const {
     QVector<Coordinates>* playableMoves = board.playableMoves(SQUARE_OPPONENT);
 
     if (depth == 0 || playableMoves->empty()) {
@@ -85,7 +85,7 @@ int Strategy::minimax(TicTacToeBoard board, int player, int depth) const {
     int bestValue = std::numeric_limits<int>::min();
 
     for (int i = 0; i < playableMoves->size(); i++) {
-        TicTacToeBoard* newGameBoard = newBoard(board, playableMoves->at(i));
+        OthelloBoard* newGameBoard = newBoard(board, playableMoves->at(i));
         int index = minimax(*newGameBoard, -player, depth-1);
 
         if (index > bestValue) {

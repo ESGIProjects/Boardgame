@@ -30,9 +30,10 @@ public:
     virtual QVector<Coordinates> *neighbors(int, int) const = 0;
     virtual bool isGameOver() const = 0;
 
-    // Start and reset board
+    // Helpers & data
     virtual int *startBoard() const = 0;
     virtual int *heuristicBoard() const = 0;
+    virtual int *directions() const;
     virtual void reset();
 
 protected:

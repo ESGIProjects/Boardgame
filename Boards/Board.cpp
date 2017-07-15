@@ -61,6 +61,14 @@ QVector<Coordinates> *Board::playableMoves(int player) const {
     return moves;
 }
 
+int *Board::directions() const {
+    int *directions = new int[8] {
+            -(cols+3), -(cols+2), -(cols+1), -1, 1, cols+3, cols+2, cols+1
+    };
+
+    return directions;
+}
+
 void Board::reset() {
     qDebug() << "Restart";
     int *start = startBoard();

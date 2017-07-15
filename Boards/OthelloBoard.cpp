@@ -41,11 +41,11 @@ bool OthelloBoard::isPlayableMove(int player, int position) const {
     int opponent = -player;
 
     for (int i = 0; i < 8; i++) {
-        int neighbor = position + DIRECTIONS[i];
+        int neighbor = position + directions()[i];
 
         if (boardState[neighbor] == opponent) {
             do {
-                neighbor += DIRECTIONS[i];
+                neighbor += directions()[i];
             } while (boardState[neighbor] == opponent);
 
             if (boardState[neighbor] == player) {
@@ -62,17 +62,17 @@ void OthelloBoard::move(int player, int position) {
     boardState[position] = player;
 
     for (int i = 0; i < 8; i++) {
-        int neighbor = position + DIRECTIONS[i];
+        int neighbor = position + directions()[i];
 
         if (boardState[neighbor] == opponent) {
             do {
-                neighbor += DIRECTIONS[i];
+                neighbor += directions()[i];
             } while (boardState[neighbor] == opponent);
 
             if (boardState[neighbor] == player) {
                 do {
                     boardState[neighbor] = player;
-                    neighbor -= DIRECTIONS[i];
+                    neighbor -= directions()[i];
                 } while (boardState[neighbor] == opponent);
             }
         }
@@ -81,10 +81,10 @@ void OthelloBoard::move(int player, int position) {
 
 QVector<Coordinates> *OthelloBoard::neighbors(int row, int col) const {
     QVector<Coordinates> *neighbors = new QVector<Coordinates>();
-    int square = row * 10 + col;
+    int square = coordinates2Array(row, col);
 
-    for (int i = 0; (unsigned long)i < sizeof(DIRECTIONS)/sizeof(*DIRECTIONS); i++) {
-        int neighbor = square + DIRECTIONS[i];
+    for (int i = 0; i < 8; i++) {
+        int neighbor = square + directions()[i];
 
         if (neighbor < 100 && neighbor >= 0 && boardState[neighbor] != SQUARE_EDGE) {
             const Coordinates *neighborCoordinates = new Coordinates(neighbor/10, neighbor%10);

@@ -139,10 +139,10 @@ void BoardWindow::handleButton(int position) {
 }
 
 int BoardWindow::convertPositionFromUIToBoard(int position) {
-    int x = position % board->getCols();
-    int y = position / board->getRows();
+    int x = position / board->getRows();
+    int y = position % board->getCols();
 
-    return board->coordinates2Array(y+1, x+1);
+    return board->coordinates2Array(x+1, y+1);
 }
 
 void BoardWindow::displayBoard() {

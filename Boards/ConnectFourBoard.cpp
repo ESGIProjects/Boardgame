@@ -1,7 +1,8 @@
 #include "ConnectFourBoard.h"
 #include "../constants.h"
+#include <QDebug>
 
-ConnectFourBoard::ConnectFourBoard() : Board(6, 7) {}
+ConnectFourBoard::ConnectFourBoard() : Board(7, 7) {}
 
 ConnectFourBoard::ConnectFourBoard(const Board &board) : Board(board) {}
 
@@ -15,12 +16,14 @@ int ConnectFourBoard::winner() const {
 }
 
 bool ConnectFourBoard::isPlayableMove(int player, int position) const {
-    // TODO
+    if (boardState[position] == SQUARE_EMPTY) {
+        return boardState[position+directions()[6]] == SQUARE_PLAYER || boardState[position+directions()[6]] == SQUARE_OPPONENT || boardState[position+directions()[6]] == SQUARE_EDGE;
+    }
     return false;
 }
 
 void ConnectFourBoard::move(int player, int position) {
-    // TODO
+    boardState[position] = player;
 }
 
 QVector<Coordinates> *ConnectFourBoard::neighbors(int row, int col) const {
@@ -30,8 +33,9 @@ QVector<Coordinates> *ConnectFourBoard::neighbors(int row, int col) const {
 }
 
 int *ConnectFourBoard::startBoard() const {
-    int* startBoard = new int[72] {
+    int* startBoard = new int[81] {
             SQUARE_EDGE, SQUARE_EDGE, SQUARE_EDGE, SQUARE_EDGE, SQUARE_EDGE, SQUARE_EDGE, SQUARE_EDGE, SQUARE_EDGE, SQUARE_EDGE,
+            SQUARE_EDGE, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EDGE,
             SQUARE_EDGE, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EDGE,
             SQUARE_EDGE, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EDGE,
             SQUARE_EDGE, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EMPTY, SQUARE_EDGE,
@@ -45,7 +49,8 @@ int *ConnectFourBoard::startBoard() const {
 }
 
 int *ConnectFourBoard::heuristicBoard() const {
-    int* heuristicBoard = new int[72] {
+    int* heuristicBoard = new int[81] {
+            0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -60,6 +65,9 @@ int *ConnectFourBoard::heuristicBoard() const {
 }
 
 bool ConnectFourBoard::isGameOver() const {
-    // TODO
-    return false;
+    // TODO vérification du vainqueur
+
+    // Personne n'a gagné : on vérifie qu'on peut toujours jouer
+    QVector<Coordinates>* playerMoves = playableMoves(SQUARE_PLAYER);
+    return playerMoves->isEmpty();
 }
