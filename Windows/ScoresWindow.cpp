@@ -12,7 +12,7 @@
 ScoresWindow::ScoresWindow(QWidget *parent) : QWidget(parent)
 {
     this->setWindowTitle("Scores");
-    this->setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
+    this->setWindowIcon(QIcon(":/resources/genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 

@@ -17,8 +17,8 @@
 StartWindow::StartWindow(QWidget *parent) : QWidget(parent){
 
     setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-    setWindowTitle("GenBoard beta 3");
-    setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
+    setWindowTitle("GenBoard");
+    setWindowIcon(QIcon(":/resources/genboard.png"));
 
     QGridLayout *layout = new QGridLayout();
 

@@ -20,9 +20,9 @@ OthelloWindow::OthelloWindow(OthelloBoard &board) : QWidget(0) {
 
     // Music launch
     playList = new QMediaPlaylist();
-    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music.mp3"));
-    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music2.mp3"));
-    playList->addMedia(QUrl::fromLocalFile("Ressources" + QString(QDir::separator()) + "music3.mp3"));
+    playList->addMedia(QUrl("qrc:/resources/music.mp3"));
+    playList->addMedia(QUrl("qrc:/resources/music.mp3"));
+    playList->addMedia(QUrl("qrc:/resources/music.mp3"));
     playList->setPlaybackMode(QMediaPlaylist::PlaybackMode::Random);
 
     music = new QMediaPlayer;
@@ -31,9 +31,7 @@ OthelloWindow::OthelloWindow(OthelloBoard &board) : QWidget(0) {
     music->play();
 
     // Window parameters
-    setWindowFlags(Qt::MSWindowsFixedSizeDialogHint);
-    setWindowFlags(Qt::MacWindowToolBarButtonHint);
-    setWindowIcon(QIcon("Ressources" + QString(QDir::separator()) + "genboard.png"));
+    setWindowIcon(QIcon(":/resources/genboard.png"));
 
     // Debug
     qDebug() << "Creation of the board !";

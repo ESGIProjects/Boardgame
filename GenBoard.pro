@@ -57,3 +57,6 @@ HEADERS  += \
     Strategies/OthelloStrategy.h \
     Strategies/TicTacToeStrategy.h \
     Strategies/ConnectFourStrategy.h
+
+RESOURCES += \
+    resources.qrc
