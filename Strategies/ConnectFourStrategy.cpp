@@ -14,22 +14,8 @@ void ConnectFourStrategy::computeMove(ConnectFourBoard board) const {
 
     if (playableMoves->empty()) {
         pass();
-    } else {
-        Coordinates *bestMove = nullptr;
-        int bestValue;
-
-        for (int i = 0; i < playableMoves->size(); i++) {
-
-            ConnectFourBoard* newGameBoard = newBoard(board, playableMoves->at(i));
-            int value = minimax(*newGameBoard, SQUARE_OPPONENT, 2);
-
-            if (!bestMove || value > bestValue) {
-                bestMove = new Coordinates(playableMoves->at(i));
-                bestValue = value;
-            }
-        }
-
-        move(*bestMove);
+    } else {      
+        move(playableMoves->at(qrand() % playableMoves->size()));
     }
 }
 

@@ -21,7 +21,7 @@ void TicTacToeStrategy::computeMove(TicTacToeBoard board) const {
         for (int i = 0; i < playableMoves->size(); i++) {
 
             TicTacToeBoard* newGameBoard = newBoard(board, playableMoves->at(i));
-            int value = minimax(*newGameBoard, SQUARE_OPPONENT, 2);
+            int value = evaluate(*newGameBoard, SQUARE_OPPONENT);
 
             if (!bestMove || value > bestValue) {
                 bestMove = new Coordinates(playableMoves->at(i));
@@ -53,7 +53,6 @@ TicTacToeBoard* TicTacToeStrategy::newBoard(TicTacToeBoard board, Coordinates mo
     newBoard->move(SQUARE_OPPONENT, newBoard->coordinates2Array(move));
     return newBoard;
 }
-
 
 int TicTacToeStrategy::evaluate(TicTacToeBoard board, int player) const {
     int utility = 0;
