@@ -2,9 +2,9 @@
 #include <QSqlDatabase>
 #include <QSqlDriver>
 #include <QSqlError>
-#include <QDebug>
 #include <QPushButton>
 #include <QDir>
+#include <QVariant>
 
 #include "StartWindow.h"
 #include "ScoresWindow.h"

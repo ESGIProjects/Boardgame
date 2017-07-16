@@ -2,7 +2,6 @@
 #include "ConnectFourStrategy.h"
 #include "constants.h"
 #include "Windows/ConnectFourWindow.h"
-#include <QDebug>
 
 ConnectFourStrategy::ConnectFourStrategy(ConnectFourWindow* window)
 {
@@ -20,8 +19,6 @@ void ConnectFourStrategy::computeMove(ConnectFourBoard board) const {
 }
 
 void ConnectFourStrategy::move(Coordinates move) const {
-    qDebug() << "Move called" << QString::number(move.col) << QString::number(move.row);
-
     int row = move.row - 1;
     int col = move.col -1;
 

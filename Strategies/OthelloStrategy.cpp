@@ -2,7 +2,6 @@
 #include "OthelloStrategy.h"
 #include "constants.h"
 #include "Windows/OthelloWindow.h"
-#include <QDebug>
 
 OthelloStrategy::OthelloStrategy(OthelloWindow* window)
 {
@@ -28,14 +27,11 @@ void OthelloStrategy::computeMove(OthelloBoard board) const {
                 bestValue = value;
             }
         }
-        qDebug() << "Best value : " << QString::number(bestValue);
         move(*bestMove);
     }
 }
 
 void OthelloStrategy::move(Coordinates move) const {
-    qDebug() << "Move called" << QString::number(move.col) << QString::number(move.row);
-
     int row = move.row - 1;
     int col = move.col -1;
 

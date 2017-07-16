@@ -2,7 +2,6 @@
 #include "TicTacToeStrategy.h"
 #include "constants.h"
 #include "Windows/TicTacToeWindow.h"
-#include <QDebug>
 
 TicTacToeStrategy::TicTacToeStrategy(TicTacToeWindow* window)
 {
@@ -34,8 +33,6 @@ void TicTacToeStrategy::computeMove(TicTacToeBoard board) const {
 }
 
 void TicTacToeStrategy::move(Coordinates move) const {
-    qDebug() << "Move called" << QString::number(move.col) << QString::number(move.row);
-
     int row = move.row - 1;
     int col = move.col -1;
 

@@ -1,5 +1,3 @@
-#include <QDebug>
-
 #include "OthelloBoard.h"
 #include "../constants.h"
 

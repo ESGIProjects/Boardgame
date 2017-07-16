@@ -2,7 +2,6 @@
 #include <QFont>
 #include <QGroupBox>
 #include <QComboBox>
-#include <QDebug>
 #include <QDir>
 
 #include "StartWindow.h"

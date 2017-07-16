@@ -61,7 +61,7 @@ void TicTacToeBoard::move(int player, int position) {
 
 QVector<Coordinates> *TicTacToeBoard::neighbors(int row, int col) const {
     QVector<Coordinates> *neighbors = new QVector<Coordinates>();
-    // TODO
+    // Pas utile ici
     return neighbors;
 }
 

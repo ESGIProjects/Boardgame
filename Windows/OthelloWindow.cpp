@@ -1,5 +1,4 @@
 #include <iostream>
-#include <QDebug>
 #include <QList>
 #include <QDir>
 #include <QString>
@@ -32,11 +31,6 @@ OthelloWindow::OthelloWindow(OthelloBoard &board) : QWidget(0) {
 
     // Window parameters
     setWindowIcon(QIcon(":/resources/genboard.png"));
-
-    // Debug
-    qDebug() << "Creation of the board !";
-    qDebug() << "Rows : " + QString::number(rows);
-    qDebug() << "Cols : " + QString::number(cols);
 
     // Menu buttons
     restartButton = new QPushButton("Restart", this);
@@ -121,12 +115,10 @@ void OthelloWindow::handleButton(int position) {
 
     // 2. Conversion de la position UI vers position de jeu
     int boardPosition = convertPositionFromUIToBoard(position);
-    qDebug() << "Handle Button : " << QString::number(boardPosition);
 
     // 3. Jeu
     if (board->isPlayableMove(currentPlayer, boardPosition)) {
         board->move(currentPlayer, boardPosition);
-        qDebug() << "Playable move";
         displayBoard();
         insertAction(currentPlayer, position);
         currentPlayer = -currentPlayer;
@@ -158,8 +150,6 @@ void OthelloWindow::handleButton(int position) {
         if (currentPlayer == SQUARE_OPPONENT) {
             strategy->computeMove(*board);
         }
-    } else {
-        qDebug() << "Not a valid move";
     }
 }
 
@@ -171,14 +161,6 @@ int OthelloWindow::convertPositionFromUIToBoard(int position) {
 }
 
 void OthelloWindow::displayBoard() {
-    QColor white(Qt::white);
-    QColor black(Qt::black);
-
-    QPalette playerPalette;
-    playerPalette.setColor(QPalette::Background, white);
-
-    QPalette opponentPalette;
-    opponentPalette.setColor(QPalette::Background, black);
 
     for (int i = 0; i < board->getRows(); i++) {
         for (int j = 0; j < board->getCols(); j++) {
@@ -189,12 +171,10 @@ void OthelloWindow::displayBoard() {
             if (squareState == SQUARE_PLAYER) {
                 button->setIcon(QIcon());
                 button->setIcon(QIcon(":/resources/othello_player.png"));
-                button->setPalette(playerPalette);
             }
             if (squareState == SQUARE_OPPONENT) {
                 button->setIcon(QIcon());
                 button->setIcon(QIcon(":/resources/othello_opponent.png"));
-                button->setPalette(opponentPalette);
             }
 
             if (squareState == SQUARE_EMPTY) {

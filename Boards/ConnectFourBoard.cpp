@@ -1,6 +1,5 @@
 #include "ConnectFourBoard.h"
 #include "../constants.h"
-#include <QDebug>
 
 ConnectFourBoard::ConnectFourBoard() : Board(7, 7) {}
 
@@ -56,7 +55,7 @@ void ConnectFourBoard::move(int player, int position) {
 
 QVector<Coordinates> *ConnectFourBoard::neighbors(int row, int col) const {
     QVector<Coordinates> *neighbors = new QVector<Coordinates>();
-    // TODO
+    // Pas utile ici
     return neighbors;
 }
 
@@ -106,15 +105,10 @@ bool ConnectFourBoard::isGameOver() const {
             // Pour chaque case, on regarde 3 cases dans chaque direction
             // Victoire si les 3 sont de la couleur du joueur
 
-            qDebug() << "";
-            qDebug() << "VOISINS DE " << QString::number(position);
-
             for (int k = 0; k < 8; k++) {
                 int neighbor1 = position + directions()[k];
                 int neighbor2 = neighbor1 + directions()[k];
                 int neighbor3 = neighbor2 + directions()[k];
-                qDebug() << QString::number(neighbor1) << "-" << QString::number(neighbor2) << "-" << QString::number(neighbor3);
-
 
                 if (boardState[position] == SQUARE_PLAYER && boardState[neighbor1] == SQUARE_PLAYER && boardState[neighbor2] == SQUARE_PLAYER && boardState[neighbor3] == SQUARE_PLAYER) {
                     return true;

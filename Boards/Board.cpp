@@ -1,5 +1,3 @@
-#include <QDebug>
-
 #include "Board.h"
 #include "constants.h"
 
@@ -70,7 +68,6 @@ int *Board::directions() const {
 }
 
 void Board::reset() {
-    qDebug() << "Restart";
     int *start = startBoard();
 
     int total = (getRows()+2) * (getCols()+2);
