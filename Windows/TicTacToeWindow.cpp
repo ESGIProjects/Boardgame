@@ -132,7 +132,14 @@ void TicTacToeWindow::handleButton(int position) {
         // 4. Jeu terminé?
         if (board->isGameOver()) {
             actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Fin de la partie !</span><br /><br />");
-            // TODO afficher score
+            int winner = board->winner();
+
+            if (winner == 1)
+                actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Joueur remporte la partie</span><br /><br />");
+            else if (winner == -1)
+                actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Ordinateur remporte la partie</span><br /><br />");
+            else
+                actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Match nul</span><br /><br />");
             return;
         }
 
