@@ -21,8 +21,8 @@ ConnectFourWindow::ConnectFourWindow(ConnectFourBoard &board) : QWidget(0) {
     // Music launch
     playList = new QMediaPlaylist();
     playList->addMedia(QUrl("qrc:/resources/music.mp3"));
-    playList->addMedia(QUrl("qrc:/resources/music.mp3"));
-    playList->addMedia(QUrl("qrc:/resources/music.mp3"));
+    playList->addMedia(QUrl("qrc:/resources/music2.mp3"));
+    playList->addMedia(QUrl("qrc:/resources/music3.mp3"));
     playList->setPlaybackMode(QMediaPlaylist::PlaybackMode::Random);
 
     music = new QMediaPlayer;
@@ -170,11 +170,11 @@ void ConnectFourWindow::displayBoard() {
             //button->setAutoFillBackground(true);
 
             if (squareState == SQUARE_PLAYER) {
-                button->setText("P");
+                button->setIcon(QIcon(":/resources/connectfour_player.png"));
                 button->setPalette(playerPalette);
             }
             if (squareState == SQUARE_OPPONENT) {
-                button->setText("O");
+                button->setIcon(QIcon(":/resources/connectfour_opponent.png"));
                 button->setPalette(opponentPalette);
             }
 

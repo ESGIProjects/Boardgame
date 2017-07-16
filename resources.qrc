@@ -1,6 +1,12 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
     <file>resources/genboard.png</file>
+    <file>resources/othello_player.png</file>
+    <file>resources/othello_opponent.png</file>
+    <file>resources/tictactoe_player.png</file>
+    <file>resources/tictactoe_opponent.png</file>
+    <file>resources/connectfour_player.png</file>
+    <file>resources/connectfour_opponent.png</file>
     <file>resources/music.mp3</file>
     <file>resources/music2.mp3</file>
     <file>resources/music3.mp3</file>

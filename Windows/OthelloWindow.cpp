@@ -21,8 +21,8 @@ OthelloWindow::OthelloWindow(OthelloBoard &board) : QWidget(0) {
     // Music launch
     playList = new QMediaPlaylist();
     playList->addMedia(QUrl("qrc:/resources/music.mp3"));
-    playList->addMedia(QUrl("qrc:/resources/music.mp3"));
-    playList->addMedia(QUrl("qrc:/resources/music.mp3"));
+    playList->addMedia(QUrl("qrc:/resources/music2.mp3"));
+    playList->addMedia(QUrl("qrc:/resources/music3.mp3"));
     playList->setPlaybackMode(QMediaPlaylist::PlaybackMode::Random);
 
     music = new QMediaPlayer;
@@ -170,11 +170,13 @@ void OthelloWindow::displayBoard() {
             //button->setAutoFillBackground(true);
 
             if (squareState == SQUARE_PLAYER) {
-                button->setText("P");
+                button->setIcon(QIcon());
+                button->setIcon(QIcon(":/resources/othello_player.png"));
                 button->setPalette(playerPalette);
             }
             if (squareState == SQUARE_OPPONENT) {
-                button->setText("O");
+                button->setIcon(QIcon());
+                button->setIcon(QIcon(":/resources/othello_opponent.png"));
                 button->setPalette(opponentPalette);
             }
 

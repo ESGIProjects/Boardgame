@@ -15,7 +15,7 @@
 
 bool isDBexists(){
     //we check if bdd file exists
-    QFileInfo qfi(QDir::currentPath());
+    QFileInfo qfi(QDir::homePath() + QDir::separator() + "bdd");
     return qfi.exists() && qfi.isFile();
 }
 
@@ -31,7 +31,7 @@ void initConnection() {
     }
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QDir::currentPath());
+    db.setDatabaseName(QDir::homePath() + QDir::separator() + "bdd");
 
     if(!db.open()){
          qDebug() << "ERROR: " << db.lastError();
@@ -73,6 +73,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     StartWindow w;
     w.show();
-    qDebug() << QDir::currentPath();
+    qDebug() << QDir::homePath();
     return a.exec();
 }
