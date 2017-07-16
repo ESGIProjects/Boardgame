@@ -21,14 +21,14 @@ void OthelloStrategy::computeMove(OthelloBoard board) const {
         for (int i = 0; i < playableMoves->size(); i++) {
 
             OthelloBoard* newGameBoard = newBoard(board, playableMoves->at(i));
-            int value = minimax(*newGameBoard, SQUARE_OPPONENT, 2);
+            int value = alphabeta(*newGameBoard, SQUARE_OPPONENT, 3, -std::numeric_limits<int>::max(),  std::numeric_limits<int>::max());
 
             if (!bestMove || value > bestValue) {
                 bestMove = new Coordinates(playableMoves->at(i));
                 bestValue = value;
             }
         }
-
+        qDebug() << "Best value : " << QString::number(bestValue);
         move(*bestMove);
     }
 }
@@ -75,23 +75,28 @@ int OthelloStrategy::evaluate(OthelloBoard board, int player) const {
     return utility;
 }
 
-int OthelloStrategy::minimax(OthelloBoard board, int player, int depth) const {
+int OthelloStrategy::alphabeta(OthelloBoard board, int player, int depth, int A, int B) const {
     QVector<Coordinates>* playableMoves = board.playableMoves(SQUARE_OPPONENT);
+    int a = A, b = B;
 
     if (depth == 0 || playableMoves->empty()) {
         return evaluate(board, SQUARE_OPPONENT);
     }
 
-    int bestValue = std::numeric_limits<int>::min();
-
     for (int i = 0; i < playableMoves->size(); i++) {
         OthelloBoard* newGameBoard = newBoard(board, playableMoves->at(i));
-        int index = minimax(*newGameBoard, -player, depth-1);
+        int index = alphabeta(*newGameBoard, -player, depth-1, A, B);
 
-        if (index > bestValue) {
-            bestValue = index;
+        if (player != SQUARE_OPPONENT) {
+            if (index < b) {
+                b = index;
+            }
+        } else {
+            if (index > a) {
+                a = index;
+            }
         }
     }
 
-    return bestValue;
+    return (player != SQUARE_OPPONENT) ? b : a;
 }

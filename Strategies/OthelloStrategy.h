@@ -15,7 +15,7 @@ public:
     void pass() const;
     OthelloBoard* newBoard(OthelloBoard, Coordinates) const;
     int evaluate(OthelloBoard, int) const;
-    int minimax(OthelloBoard, int, int) const;
+    int alphabeta(OthelloBoard, int, int, int, int) const;
 
     OthelloWindow *window;
 };
