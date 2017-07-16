@@ -179,7 +179,7 @@ void ConnectFourWindow::displayBoard() {
             }
 
             if (squareState == SQUARE_EMPTY) {
-                button->setText("");
+                button->setIcon(QIcon());;
             }
 
             button->update();
