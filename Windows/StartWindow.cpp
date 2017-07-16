@@ -62,8 +62,6 @@ StartWindow::StartWindow(QWidget *parent) : QWidget(parent){
 void StartWindow::onStartGame(){
 
     if(connectfour->isChecked()) {
-        query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
-
         ConnectFourBoard *board = new ConnectFourBoard();
         ConnectFourWindow *widget = new ConnectFourWindow(*board);
         widget->show();
@@ -71,8 +69,6 @@ void StartWindow::onStartGame(){
         this->close();
     }
     else if(othello->isChecked()) {
-        query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Othello'");
-
         OthelloBoard *board = new OthelloBoard();
         OthelloWindow *widget = new OthelloWindow(*board);
         widget->show();
@@ -80,8 +76,6 @@ void StartWindow::onStartGame(){
         this->close();
     }
     else if(tictactoe->isChecked()){
-        query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Tic Tac Toe'");
-
         TicTacToeBoard *board = new TicTacToeBoard();
         TicTacToeWindow *widget = new TicTacToeWindow(*board);
         widget->show();

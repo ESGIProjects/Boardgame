@@ -111,6 +111,8 @@ void ConnectFourWindow::restart(){
 
     actionTextEdit->clear();
     actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Début de la partie !</span><br /><br />");
+
+    query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Connect Four'");
 }
 
 void ConnectFourWindow::handleButton(int position) {

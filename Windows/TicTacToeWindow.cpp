@@ -111,6 +111,8 @@ void TicTacToeWindow::restart(){
 
     actionTextEdit->clear();
     actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Début de la partie !</span><br /><br />");
+
+    query.exec("UPDATE games SET numberPlay = numberPlay + 1 where name = 'Tic Tac Toe'");
 }
 
 void TicTacToeWindow::handleButton(int position) {
