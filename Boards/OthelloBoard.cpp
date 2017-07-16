@@ -12,8 +12,7 @@ OthelloBoard::OthelloBoard(const Board &board) : Board(board) {}
 //}
 
 int OthelloBoard::winner() const {
-    int player = 0;
-    int opponent = 0;
+    int player = 0, opponent = 0;
 
     for (int i = 1; i < (cols+1); i++) {
         for (int j = 1; j < (rows+1); j++) {

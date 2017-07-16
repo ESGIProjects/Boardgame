@@ -11,7 +11,35 @@ ConnectFourBoard::ConnectFourBoard(const Board &board) : Board(board) {}
 //}
 
 int ConnectFourBoard::winner() const {
-    // TODO
+    // On parcourt toutes les cases
+    for (int i = 1; i <= cols; i++) {
+        for (int j = 1; j <= cols; j++) {
+            int position = coordinates2Array(i, j);
+
+            if (boardState[position] == SQUARE_EMPTY) {
+                // On ne commence la vérification que si la case est occupée
+                continue;
+            }
+
+            // Pour chaque case, on regarde 3 cases dans chaque direction
+            // Victoire si les 3 sont de la couleur du joueur
+            for (int k = 0; k < 8; k++) {
+                int neighbor1 = position + directions()[k];
+                int neighbor2 = neighbor1 + directions()[k];
+                int neighbor3 = neighbor2 + directions()[k];
+
+                if (boardState[position] == SQUARE_PLAYER && boardState[neighbor1] == SQUARE_PLAYER && boardState[neighbor2] == SQUARE_PLAYER && boardState[neighbor3] == SQUARE_PLAYER) {
+                    return 1;
+                }
+
+                if (boardState[position] == SQUARE_OPPONENT && boardState[neighbor1] == SQUARE_OPPONENT && boardState[neighbor2] == SQUARE_OPPONENT && boardState[neighbor3] == SQUARE_OPPONENT) {
+                    return -1;
+                }
+
+            }
+        }
+    }
+
     return 0;
 }
 
@@ -65,7 +93,40 @@ int *ConnectFourBoard::heuristicBoard() const {
 }
 
 bool ConnectFourBoard::isGameOver() const {
-    // TODO vérification du vainqueur
+    // On parcourt toutes les cases
+    for (int i = 1; i <= cols; i++) {
+        for (int j = 1; j <= rows; j++) {
+            int position = coordinates2Array(i, j);
+
+            if (boardState[position] == SQUARE_EMPTY) {
+                // On ne commence la vérification que si la case est occupée
+                continue;
+            }
+
+            // Pour chaque case, on regarde 3 cases dans chaque direction
+            // Victoire si les 3 sont de la couleur du joueur
+
+            qDebug() << "";
+            qDebug() << "VOISINS DE " << QString::number(position);
+
+            for (int k = 0; k < 8; k++) {
+                int neighbor1 = position + directions()[k];
+                int neighbor2 = neighbor1 + directions()[k];
+                int neighbor3 = neighbor2 + directions()[k];
+                qDebug() << QString::number(neighbor1) << "-" << QString::number(neighbor2) << "-" << QString::number(neighbor3);
+
+
+                if (boardState[position] == SQUARE_PLAYER && boardState[neighbor1] == SQUARE_PLAYER && boardState[neighbor2] == SQUARE_PLAYER && boardState[neighbor3] == SQUARE_PLAYER) {
+                    return true;
+                }
+
+                if (boardState[position] == SQUARE_OPPONENT && boardState[neighbor1] == SQUARE_OPPONENT && boardState[neighbor2] == SQUARE_OPPONENT && boardState[neighbor3] == SQUARE_OPPONENT) {
+                    return true;
+                }
+
+            }
+        }
+    }
 
     // Personne n'a gagné : on vérifie qu'on peut toujours jouer
     QVector<Coordinates>* playerMoves = playableMoves(SQUARE_PLAYER);
