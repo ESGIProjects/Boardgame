@@ -11,7 +11,7 @@
 #include <QUrl>
 #include <QTextEdit>
 #include <string.h>
-
+#include <QSqlQuery>
 #include "../Boards/OthelloBoard.h"
 
 class OthelloStrategy;
@@ -33,6 +33,8 @@ public:
     QPushButton **buttons;
 
     QTextEdit *actionTextEdit;
+
+    QSqlQuery query;
 
     int currentPlayer;
 

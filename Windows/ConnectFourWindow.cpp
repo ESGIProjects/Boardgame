@@ -134,8 +134,10 @@ void ConnectFourWindow::handleButton(int position) {
             actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Fin de la partie !</span><br /><br />");
             int winner = board->winner();
 
-            if (winner == 1)
+            if (winner == 1){
+                query.exec("UPDATE games SET numberWins = numberWins + 1 where name = 'Connect Four'");
                 actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Joueur remporte la partie</span><br /><br />");
+            }
             else if (winner == -1)
                 actionTextEdit->insertHtml("<span style=\"font-weight: bold\">Ordinateur remporte la partie</span><br /><br />");
             else
