@@ -13,7 +13,7 @@
 OthelloWindow::OthelloWindow(OthelloBoard &board) : QWidget(0) {
 
     // Base requirements
-    QString title = "BoardWindow";
+    QString title = "Othello";
     this->board = &board;
     int rows = board.getRows();
     int cols = board.getCols();

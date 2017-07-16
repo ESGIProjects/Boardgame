@@ -13,7 +13,7 @@
 TicTacToeWindow::TicTacToeWindow(TicTacToeBoard &board) : QWidget(0) {
 
     // Base requirements
-    QString title = "BoardWindow";
+    QString title = "TicTacToe";
     this->board = &board;
     int rows = board.getRows();
     int cols = board.getCols();

@@ -13,7 +13,7 @@
 ConnectFourWindow::ConnectFourWindow(ConnectFourBoard &board) : QWidget(0) {
 
     // Base requirements
-    QString title = "BoardWindow";
+    QString title = "Connect Four";
     this->board = &board;
     int rows = board.getRows();
     int cols = board.getCols();
